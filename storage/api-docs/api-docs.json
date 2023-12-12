@@ -1,0 +1,134 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tobfa's API",
+        "description": "",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/authentication/authenticate": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login to systems and return the token and inits data.",
+                "description": "Do Login",
+                "operationId": "23bc458319f733333c2453412dc52c70",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "query",
+                        "description": "Login Username & Password",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "email": {
+                                    "type": "string",
+                                    "example": "me@tobfa.id"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "123456"
+                                },
+                                "remember_me": {
+                                    "type": "integer",
+                                    "example": "1"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/authentication/logout": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Login to systems and return the token and inits data.",
+                "description": "Do Login",
+                "operationId": "561148bb8ca22386468e54de95a939b3",
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
+        "/api/inits": {
+            "get": {
+                "tags": [
+                    "Init"
+                ],
+                "summary": "Get init data",
+                "description": "Get Init",
+                "operationId": "4c05e29c3ff31208d40feffed0180e1a",
+                "responses": {
+                    "200": {
+                        "description": "successful get init"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Create User",
+                "description": "Create User",
+                "operationId": "181038dd23c1a5f2bbdcff1a0b9cb2f5",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "me"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "me@tobfa.id"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "123456"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "type": "apiKey",
+                "description": "A short description for security scheme",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
