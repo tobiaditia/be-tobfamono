@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Business;
+use App\Repositories\InitRepository;
 use Illuminate\Support\Facades\Auth;
 
 class InitAPIController extends Controller
@@ -24,8 +25,8 @@ class InitAPIController extends Controller
      *      )
      * )
      */
-    public function get() {
-        return Business::get();
-        // return tenancy()->tenant;
+    public function get(InitRepository $initRepository) {
+        $init = $initRepository->get();
+        return $this->sendResponse($init, __('messages.retrivied'));
     }
 }

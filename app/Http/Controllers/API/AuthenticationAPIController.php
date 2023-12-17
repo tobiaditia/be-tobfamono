@@ -62,7 +62,8 @@ class AuthenticationAPIController extends Controller
      *      path="/api/authentication/logout",
      *      summary="Login to systems and return the token and inits data.",
      *      tags={"Authentication"},
-     *      description="Do Login",
+     *      security={{"bearer":{}}},
+     *      description="Do Logout",
      *      @OA\Response(
      *          response=200,
      *          description="successful operation",
@@ -71,7 +72,8 @@ class AuthenticationAPIController extends Controller
      */
     public function logout(AuthenticationRepository $repository)
     {
-        // return Business::get();
-        return $repository->logout();
+        $logout = $repository->logout();
+
+        return $this->sendResponse($logout, __('messages.authenticate.logout'));
     }
 }

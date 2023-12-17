@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('businesses_id')->unsigned();
-            $table->integer('business_category_id')->unsigned();
             $table->timestamps();
         });
     }

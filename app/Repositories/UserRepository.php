@@ -2,12 +2,7 @@
 
 namespace App\Repositories;
 
-use App\Models\Hr\HrPost;
-use App\Models\Hr\HrPostType;
-use App\Models\Hr\HrPostViewer;
-use App\Models\Tenant;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class UserRepository
 {

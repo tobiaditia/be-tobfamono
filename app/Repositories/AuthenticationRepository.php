@@ -2,12 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Models\Hr\HrPost;
-use App\Models\Hr\HrPostType;
-use App\Models\Hr\HrPostViewer;
-use App\Models\Tenant;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Passport\TokenRepository;
 
 class AuthenticationRepository
 {
@@ -17,14 +14,11 @@ class AuthenticationRepository
      */
     public function authenticate(array $input)
     {
-        // tenancy()->initialize('me');
         $attemp = Auth::attempt(['email' => $input['email'], 'password' => $input['password']]);
         if ($attemp) {
-            // successfull authentication
             $user = User::find(Auth::user()->id);
-
             $user_token['token'] = $user->createToken('appToken')->accessToken;
-            // tenancy()->end();
+
             return response()->json([
                 'success' => true,
                 'token' => $user_token,
@@ -39,32 +33,15 @@ class AuthenticationRepository
         }
     }
 
+    /**
+     * Proses logout
+     */
     public function logout()
     {
-
-        // return tenancy()->tenant;
-        if(Auth::check()){
-
-            $user = Auth::user();
-            $revoke = $user->token()->revoke();
-
-            if($revoke){
-                return response()->json([
-                    'success' => true,
-                    'message' => 'Logout success',
-                ], 200);
-            }else{
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Logout fail',
-                ], 401);
-            }
-        }else{
-            return response()->json([
-                'success' => false,
-                'message' => 'User not login',
-            ], 401);
-        }
+        $user = Auth::user();
+        $tokenId = $user->token()->id;
+        $tokenRepository = app(TokenRepository::class);
+        $tokenRepository->revokeAccessToken($tokenId);
     }
 
 }

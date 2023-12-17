@@ -52,13 +52,91 @@
                     "Authentication"
                 ],
                 "summary": "Login to systems and return the token and inits data.",
-                "description": "Do Login",
+                "description": "Do Logout",
                 "operationId": "561148bb8ca22386468e54de95a939b3",
                 "responses": {
                     "200": {
                         "description": "successful operation"
                     }
-                }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/business": {
+            "get": {
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Get business data",
+                "description": "Get Business",
+                "operationId": "366116f5facf8c2dcd6fac3a5771c8e9",
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Post business data",
+                "description": "Post Business",
+                "operationId": "81d882627730e0ada413eef497a1f612",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Business"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful Post business"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/business/{id}": {
+            "get": {
+                "tags": [
+                    "Business"
+                ],
+                "summary": "Find business data",
+                "description": "Find Business",
+                "operationId": "5276622879ad62337098338d5af73dfc",
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
             }
         },
         "/api/inits": {
@@ -122,6 +200,25 @@
         }
     },
     "components": {
+        "schemas": {
+            "Business": {
+                "properties": {
+                    "name": {
+                        "type": "string",
+                        "example": "Usaha 1"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Jakarta"
+                    },
+                    "business_category_id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "bearer": {
                 "type": "apiKey",

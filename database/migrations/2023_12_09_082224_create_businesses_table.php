@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('name');
             $table->text('address')->nullable();
+            $table->integer('business_category_id')->unsigned();
             $table->timestamps();
         });
     }
