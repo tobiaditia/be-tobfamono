@@ -4,7 +4,7 @@ namespace App\Http\Requests\Business;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBusinessAPIRequest extends FormRequest
+class DeleteBusinessAPIRequest extends FormRequest
 {
 
     use WriteRuleTrait;
@@ -16,10 +16,16 @@ class CreateBusinessAPIRequest extends FormRequest
      */
     public function rules()
     {
+
         return [
-            'name' => $this->getNameRules(),
-            'address' => $this->getAddressRules(),
-            'business_category_id' => $this->getBusinessCategoryIdRules(),
+            'id' => $this->getIdRules()
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'id' => $this->route('id')
+        ]);
     }
 }

@@ -3,12 +3,13 @@
 namespace App\Repositories;
 
 use App\Models\Business;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
 class BusinessRepository
 {
     /**
-     * 
+     *
      * @return array
      */
     public function get(): array
@@ -17,7 +18,7 @@ class BusinessRepository
     }
 
     /**
-     * 
+     *
      * @param int $id
      * @return array
      */
@@ -27,7 +28,7 @@ class BusinessRepository
     }
 
     /**
-     * 
+     *
      * @param array $request
      * @return array
      */
@@ -41,6 +42,32 @@ class BusinessRepository
         $business->save();
 
         return $this->find($business->id);
+    }
+
+    /**
+     *
+     * @param int $id
+     * @param array $request
+     * @return array
+     */
+    public function update(int $id, array $request): array
+    {
+        $business = Business::find($id);
+        $business->name = $request['name'];
+        $business->address = $request['address'];
+        $business->business_category_id = $request['business_category_id'];
+        $business->save();
+
+        return $this->find($business->id);
+    }
+
+    /**
+     * @param int $id
+     */
+    public function delete(int $id): bool
+    {
+        Transaction::where('business_id', $id)->delete();
+        return Business::where('id', $id)->delete();
     }
 
 }

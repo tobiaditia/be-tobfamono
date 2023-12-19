@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
-use App\Traits\HasTranslations;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\HasTranslations;
 
-class BusinessCategory extends Model
+class TransactionType extends Model
 {
     use HasTranslations;
 
-    protected $table = 'business_categories';
+    public const BUY = 1;
+    public const SELL = 2;
 
     /**
      * Definisi kolom yang akan ditranslate

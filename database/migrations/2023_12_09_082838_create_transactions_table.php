@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->integer('business_item_id')->unsigned();
+            $table->integer('business_id')->unsigned();
             $table->integer('transaction_type_id')->unsigned();
             $table->integer('transaction_item_id')->unsigned();
             $table->float('total');

@@ -66,14 +66,14 @@
                 ]
             }
         },
-        "/api/business": {
+        "/api/businesses": {
             "get": {
                 "tags": [
-                    "Business"
+                    "Businesses"
                 ],
                 "summary": "Get business data",
                 "description": "Get Business",
-                "operationId": "366116f5facf8c2dcd6fac3a5771c8e9",
+                "operationId": "1f79cf73e62dc5a8b542c9e6be704acc",
                 "responses": {
                     "200": {
                         "description": "successful get business"
@@ -87,11 +87,11 @@
             },
             "post": {
                 "tags": [
-                    "Business"
+                    "Businesses"
                 ],
                 "summary": "Post business data",
                 "description": "Post Business",
-                "operationId": "81d882627730e0ada413eef497a1f612",
+                "operationId": "eac1732d2e6210609ae7f4d424dafdd3",
                 "requestBody": {
                     "content": {
                         "application/json": {
@@ -119,17 +119,118 @@
                 ]
             }
         },
-        "/api/business/{id}": {
+        "/api/businesses/{id}": {
             "get": {
                 "tags": [
-                    "Business"
+                    "Businesses"
                 ],
                 "summary": "Find business data",
                 "description": "Find Business",
-                "operationId": "5276622879ad62337098338d5af73dfc",
+                "operationId": "5e9f4f497b820add110b20cbbdd40a06",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "successful get business"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Put business data",
+                "description": "Put Business",
+                "operationId": "34dbe9672944022d387c805f7c0fe353",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Business"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful Put business"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Delete business data",
+                "description": "Delete Business",
+                "operationId": "ba3204b8b7a0eb0ea0ec28eee619b42a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful delete business"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/businessCategories": {
+            "get": {
+                "tags": [
+                    "Business Categories"
+                ],
+                "summary": "Get business category data",
+                "description": "Get Business category",
+                "operationId": "692e1f661418b2be03149226e614b670",
+                "responses": {
+                    "200": {
+                        "description": "successful get business category"
                     }
                 },
                 "security": [
@@ -150,6 +251,172 @@
                 "responses": {
                     "200": {
                         "description": "successful get init"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/transactions": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Get transaction data",
+                "description": "Get transaction",
+                "operationId": "9742523dbd7d1b65e62d315300ba7256",
+                "responses": {
+                    "200": {
+                        "description": "successful get transaction item"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Post transaction data",
+                "description": "Post Transactions",
+                "operationId": "d704a565af6760412bb4a3aefa71af9f",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Transaction"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful Post transaction"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/transactions/{id}": {
+            "put": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Put transaction data",
+                "description": "Put Transaction",
+                "operationId": "9042a6ab13891bd69f6ac5fae7507f52",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Transaction"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful Put transaction"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Delete transaction data",
+                "description": "Delete Transaction",
+                "operationId": "377707e0473c0fd5d0c69b0531de107d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful delete transaction"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/transactionItems": {
+            "get": {
+                "tags": [
+                    "Transaction Items"
+                ],
+                "summary": "Get transaction item data",
+                "description": "Get transaction item",
+                "operationId": "fd1268e397714eafdf3975cbf98c5656",
+                "responses": {
+                    "200": {
+                        "description": "successful get transaction item"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/transactionTypes": {
+            "get": {
+                "tags": [
+                    "Transaction Types"
+                ],
+                "summary": "Get transaction type data",
+                "description": "Get transaction type",
+                "operationId": "40f9f41ce2a6fddf60cbf0d28885c58e",
+                "responses": {
+                    "200": {
+                        "description": "successful get transaction type"
                     }
                 },
                 "security": [
@@ -212,6 +479,31 @@
                         "example": "Jakarta"
                     },
                     "business_category_id": {
+                        "type": "integer",
+                        "example": "1"
+                    }
+                },
+                "type": "object"
+            },
+            "Transaction": {
+                "properties": {
+                    "business_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "transaction_type_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "transaction_item_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "total": {
+                        "type": "integer",
+                        "example": "1000"
+                    },
+                    "multiplier": {
                         "type": "integer",
                         "example": "1"
                     }

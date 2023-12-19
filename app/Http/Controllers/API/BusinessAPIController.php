@@ -4,10 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Business\CreateBusinessAPIRequest;
+use App\Http\Requests\Business\DeleteBusinessAPIRequest;
 use App\Http\Requests\Business\FindBusinessAPIRequest;
-use App\Models\Business;
-use App\Models\User;
-use App\Repositories\AuthenticationRepository;
+use App\Http\Requests\Business\UpdateBusinessAPIRequest;
 use App\Repositories\BusinessRepository;
 
 class BusinessAPIController extends Controller
@@ -15,9 +14,9 @@ class BusinessAPIController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/business",
+     *      path="/api/businesses",
      *      summary="Get business data",
-     *      tags={"Business"},
+     *      tags={"Businesses"},
      *      description="Get Business",
      *      security={{"bearer":{}}},
      *      @OA\Response(
@@ -34,38 +33,46 @@ class BusinessAPIController extends Controller
 
     /**
      * @OA\Get(
-     *      path="/api/business/{id}",
+     *      path="/api/businesses/{id}",
      *      summary="Find business data",
-     *      tags={"Business"},
+     *      tags={"Businesses"},
      *      description="Find Business",
      *      security={{"bearer":{}}},
+     *       @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          )
+     *      ),
      *      @OA\Response(
      *          response=200,
      *          description="successful get business",
      *      )
      * )
      */
-    public function find(FindBusinessAPIRequest $request, BusinessRepository $businessRepository)
+    public function find(FindBusinessAPIRequest $request, int $id, BusinessRepository $businessRepository)
     {
-        $business = $businessRepository->get();
+        $business = $businessRepository->find($id);
         return $this->sendResponse($business, __('messages.retrivied'));
     }
 
     /**
-     * Create Business 
+     * Create Business
      * @param CreateBusinessAPIRequest $request
-     * 
+     *
      * @OA\Post(
-     *      path="/api/business",
+     *      path="/api/businesses",
      *      summary="Post business data",
-     *      tags={"Business"},
+     *      tags={"Businesses"},
      *      description="Post Business",
      *      security={{"bearer":{}}},
-     *      
+     *
      *      @OA\RequestBody(
      *          @OA\JsonContent(ref="#/components/schemas/Business")
      *      ),
-     * 
+     *
      *      @OA\Response(
      *          response=200,
      *          description="successful Post business",
@@ -80,9 +87,81 @@ class BusinessAPIController extends Controller
      *      )
      * )
      */
-    public function create(CreateBusinessAPIRequest $request, BusinessRepository $businessRepository) 
+    public function create(CreateBusinessAPIRequest $request, BusinessRepository $businessRepository)
     {
         $business = $businessRepository->create($request->all());
+        return $this->sendResponse($business, __('messages.retrivied'));
+    }
+
+    /**
+     * Create Business
+     * @param UpdateBusinessAPIRequest $request
+     * @param int $id
+     *
+     * @OA\Put(
+     *      path="/api/businesses/{id}",
+     *      summary="Put business data",
+     *      tags={"Businesses"},
+     *      description="Put Business",
+     *      security={{"bearer":{}}},
+     *
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          )
+     *      ),
+     *
+     *      @OA\RequestBody(
+     *          @OA\JsonContent(ref="#/components/schemas/Business")
+     *      ),
+     *
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful Put business",
+     *      ),
+     *      @OA\Response(
+     *          response=400,
+     *          description="Invalid input"
+     *      ),
+     *      @OA\Response(
+     *          response=404,
+     *          description="Not found",
+     *      )
+     * )
+     */
+    public function update(UpdateBusinessAPIRequest $request, int $id, BusinessRepository $businessRepository)
+    {
+        $business = $businessRepository->update($id, $request->all());
+        return $this->sendResponse($business, __('messages.retrivied'));
+    }
+
+    /**
+     * @OA\Delete(
+     *      path="/api/businesses/{id}",
+     *      summary="Delete business data",
+     *      tags={"Businesses"},
+     *      description="Delete Business",
+     *      security={{"bearer":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful delete business",
+     *      )
+     * )
+     */
+    public function delete(DeleteBusinessAPIRequest $request, int $id, BusinessRepository $businessRepository)
+    {
+        $business = $businessRepository->delete($id);
         return $this->sendResponse($business, __('messages.retrivied'));
     }
 }

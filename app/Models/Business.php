@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @OA\Schema(
@@ -33,5 +34,15 @@ class Business extends Model
     public function scopeCurrentUser($query)
     {
         return $query->where('user_id', auth()->id());
+    }
+
+    /**
+     * Relasi one to many dengan transaksi
+     *
+     * @return HasMany
+     */
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(Transaction::class);
     }
 }
