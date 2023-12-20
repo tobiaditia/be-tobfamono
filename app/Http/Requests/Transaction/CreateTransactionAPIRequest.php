@@ -22,6 +22,7 @@ class CreateTransactionAPIRequest extends FormRequest
             'transaction_item_id' => $this->getTransactionItemIdRules(),
             'total' => $this->getTotalRules(),
             'multiplier' => $this->getMultiplierRules(),
+            'date' => $this->getDateRules(),
         ];
     }
 }

@@ -59,4 +59,12 @@ trait WriteRuleTrait
             'min:0',
         ];
     }
+
+    public function getDateRules(): array
+    {
+        return [
+            'required',
+            'date',
+        ];
+    }
 }

@@ -80,7 +80,7 @@ $ php artisan db:seed --class="Database\Seeders\SystemSeeder"
 
 ### 6. Dokumentasi API
 
-URL API Docs bisa diakses di [http://app.tobfamono.test/api/documentation](http://app.tobfamono.test/api/documentation).
+URL API Docs bisa diakses di [http://nama_domain_anda/api/documentation](http://nama_domain_anda/api/documentation).
 
 <a name="testing"></a>
 

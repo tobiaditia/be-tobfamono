@@ -38,6 +38,7 @@ class TransactionRepository
         $transaction->transaction_item_id = $request['transaction_item_id'];
         $transaction->total = $request['total'] ?? 0;
         $transaction->multiplier = $request['multiplier'] ?? 1;
+        $transaction->date = $request['date'] ?? now()->toDateString();
         $transaction->save();
 
         return $this->find($transaction->id);
@@ -57,6 +58,7 @@ class TransactionRepository
         $transaction->transaction_item_id = $request['transaction_item_id'];
         $transaction->total = $request['total'] ?? 0;
         $transaction->multiplier = $request['multiplier'] ?? 1;
+        $transaction->date = $request['date'] ?? now()->toDateString();
         $transaction->save();
 
         return $this->find($transaction->id);

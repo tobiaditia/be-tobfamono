@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('transaction_item_id')->unsigned();
             $table->float('total');
             $table->integer('multiplier');
+            $table->date('date');
             $table->timestamps();
         });
     }
