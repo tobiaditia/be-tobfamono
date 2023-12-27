@@ -32,6 +32,11 @@ use Illuminate\Database\Eloquent\Model;
  *     type="int",
  *     example="1"
  *   ),
+ *   @OA\Property(
+ *     property="date",
+ *     type="string",
+ *     example="2023-12-12"
+ *   ),
  * )
  */
 class Transaction extends Model

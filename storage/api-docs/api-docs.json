@@ -506,6 +506,10 @@
                     "multiplier": {
                         "type": "integer",
                         "example": "1"
+                    },
+                    "date": {
+                        "type": "string",
+                        "example": "2023-12-12"
                     }
                 },
                 "type": "object"
