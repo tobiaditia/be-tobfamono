@@ -17,7 +17,7 @@ class AuthenticationRepository
         $attemp = Auth::attempt(['email' => $input['email'], 'password' => $input['password']]);
         if ($attemp) {
             $user = User::find(Auth::user()->id);
-            $user_token['token'] = $user->createToken('appToken')->accessToken;
+            $user_token = $user->createToken('appToken')->accessToken;
 
             return response()->json([
                 'success' => true,
