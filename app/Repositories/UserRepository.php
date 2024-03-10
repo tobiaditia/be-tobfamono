@@ -23,4 +23,14 @@ class UserRepository
         return $user;
     }
 
+    /**
+     *
+     * @param int $id
+     * @return array
+     */
+    public function find(int $id): array
+    {
+        return User::find($id)->toArray();
+    }
+
 }

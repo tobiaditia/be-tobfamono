@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\CreateUserAPIRequest;
+use App\Http\Requests\User\FindUserAPIRequest;
 use App\Repositories\UserRepository;
 
 class UserAPIController extends Controller
@@ -48,5 +49,32 @@ class UserAPIController extends Controller
      */
     public function create(CreateUserAPIRequest $request, UserRepository $userRepository) {
         return $userRepository->create($request->all());
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/users/{id}",
+     *      summary="Find user data",
+     *      tags={"User"},
+     *      description="Find User",
+     *      security={{"bearer":{}}},
+     *       @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful get user",
+     *      )
+     * )
+     */
+    public function find(FindUserAPIRequest $request, int $id, UserRepository $userRepository)
+    {
+        $userRepository = $userRepository->find($id);
+        return $this->sendResponse($userRepository, __('messages.retrivied'));
     }
 }

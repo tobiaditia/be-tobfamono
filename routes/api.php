@@ -84,4 +84,10 @@ Route::group([
     ], function () {
         Route::get('', [TransactionTypeAPIController::class, 'get']);
     });
+
+    Route::group([
+        'prefix' => '/users'
+    ], function () {
+        Route::get('/{id}', [UserAPIController::class, 'find']);
+    });
 });
