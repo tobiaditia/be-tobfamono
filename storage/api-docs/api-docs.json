@@ -46,6 +46,45 @@
                 }
             }
         },
+        "/api/authentication/register": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "Create User",
+                "description": "Create User",
+                "operationId": "f86f20db0ad9d4b3a4f20e52b8b3b50f",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "me"
+                                },
+                                "email": {
+                                    "type": "string",
+                                    "example": "me@tobfa.id"
+                                },
+                                "password": {
+                                    "type": "string",
+                                    "example": "123456"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                }
+            }
+        },
         "/api/authentication/logout": {
             "post": {
                 "tags": [
@@ -304,6 +343,36 @@
                     },
                     "404": {
                         "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/transactions/{businessId}/business": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Get transaction data by business",
+                "description": "Get transaction",
+                "operationId": "3271f37e19c84dcd4781f346152be013",
+                "parameters": [
+                    {
+                        "name": "businessId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get transaction item"
                     }
                 },
                 "security": [

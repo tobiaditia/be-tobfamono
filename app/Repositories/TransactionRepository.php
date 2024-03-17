@@ -17,6 +17,15 @@ class TransactionRepository
 
     /**
      *
+     * @return array
+     */
+    public function getByBusiness(int $businessId): array
+    {
+        return Transaction::where('business_id', $businessId)->get()->toArray();
+    }
+
+    /**
+     *
      * @param int $id
      * @return array
      */

@@ -34,6 +34,25 @@ class AuthenticationRepository
     }
 
     /**
+     * Mengambil record post
+     * @return array
+     */
+    public function register(array $input)
+    {
+        /** @var UserRepository */
+        $userRepo = app(UserRepository::class);
+        $user = $userRepo->create($input);
+        $user = User::find($user->id);
+        $user_token = $user->createToken('appToken')->accessToken;
+
+        return response()->json([
+            'success' => true,
+            'token' => $user_token,
+            'user' => $user,
+        ], 200);
+    }
+
+    /**
      * Proses logout
      */
     public function logout()

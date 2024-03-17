@@ -29,7 +29,7 @@ trait WriteRuleTrait
     public function getAddressRules(): array
     {
         return [
-            'required',
+            'nullable',
             'string',
             'min:4',
             'max:500',

@@ -26,6 +26,7 @@ Route::group([
     'prefix' => '/authentication'
 ], function () {
     Route::post('/authenticate', [AuthenticationAPIController::class, 'authenticate'])->name('authenticate');
+    Route::post('/register', [AuthenticationAPIController::class, 'register'])->name('register');
     Route::get('/unauthenticated', function () {
         return response()->json([
             'message' => 'Unauthenticated',
@@ -61,6 +62,7 @@ Route::group([
         'prefix' => '/transactions'
     ], function () {
         Route::get('', [TransactionAPIController::class, 'get']);
+        Route::get('/{businessId}/business', [TransactionAPIController::class, 'getByBusiness']);
         Route::get('/{id}', [TransactionAPIController::class, 'find']);
         Route::post('', [TransactionAPIController::class, 'create']);
         Route::put('/{id}', [TransactionAPIController::class, 'update']);

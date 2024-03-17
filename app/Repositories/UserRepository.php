@@ -8,9 +8,9 @@ class UserRepository
 {
     /**
      * Mengambil record post
-     * @return array
+     * @return User
      */
-    public function create(array $input)
+    public function create(array $input): User
     {
         $user = new User();
         $user->name = $input['name'];

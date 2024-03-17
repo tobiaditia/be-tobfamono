@@ -31,6 +31,33 @@ class TransactionAPIController extends Controller
     }
 
     /**
+     * @OA\Get(
+     *      path="/api/transactions/{businessId}/business",
+     *      summary="Get transaction data by business",
+     *      tags={"Transactions"},
+     *      description="Get transaction",
+     *      security={{"bearer":{}}},
+     *      @OA\Parameter(
+     *          name="businessId",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful get transaction item",
+     *      )
+     * )
+     */
+    public function getByBusiness(int $businessId, TransactionRepository $transactionRepository)
+    {
+        $transactions = $transactionRepository->getByBusiness($businessId);
+        return $this->sendResponse($transactions, __('messages.retrivied'));
+    }
+
+    /**
      * Create Transactions
      * @param CreateTransactionAPIRequest $request
      *
@@ -66,7 +93,7 @@ class TransactionAPIController extends Controller
     }
 
     /**
-     * Create Transaction
+     * Put Transaction
      * @param UpdateTransactionAPIRequest $request
      * @param int $id
      *
