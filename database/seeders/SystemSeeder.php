@@ -15,6 +15,7 @@ class SystemSeeder extends Seeder
             BusinessCategorySeeder::class,
             BusinessTransactionTypeSeeder::class,
             BusinessTransactionItemSeeder::class,
+            TransactionTypeSeeder::class,
 
         ]);
     }

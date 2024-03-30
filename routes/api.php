@@ -7,6 +7,7 @@ use App\Http\Controllers\API\BusinessTransactionAPIController;
 use App\Http\Controllers\API\BusinessTransactionItemAPIController;
 use App\Http\Controllers\API\BusinessTransactionTypeAPIController;
 use App\Http\Controllers\API\InitAPIController;
+use App\Http\Controllers\API\TransactionAPIController;
 use App\Http\Controllers\API\UserAPIController;
 use Illuminate\Support\Facades\Route;
 
@@ -66,6 +67,16 @@ Route::group([
         Route::post('', [BusinessTransactionAPIController::class, 'create']);
         Route::put('/{id}', [BusinessTransactionAPIController::class, 'update']);
         Route::delete('/{id}', [BusinessTransactionAPIController::class, 'delete']);
+    });
+
+    Route::group([
+        'prefix' => '/transactions'
+    ], function () {
+        Route::get('', [TransactionAPIController::class, 'get']);
+        Route::get('/{id}', [TransactionAPIController::class, 'find']);
+        Route::post('', [TransactionAPIController::class, 'create']);
+        Route::put('/{id}', [TransactionAPIController::class, 'update']);
+        Route::delete('/{id}', [TransactionAPIController::class, 'delete']);
     });
 
     Route::group([

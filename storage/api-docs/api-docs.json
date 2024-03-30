@@ -497,6 +497,160 @@
                 ]
             }
         },
+        "/api/transactions": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Get transaction data",
+                "description": "Get transaction",
+                "operationId": "9742523dbd7d1b65e62d315300ba7256",
+                "responses": {
+                    "200": {
+                        "description": "successful get transaction item"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Post transaction data",
+                "description": "Post Transactions",
+                "operationId": "d704a565af6760412bb4a3aefa71af9f",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Transaction"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful Post transaction"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/transactions/{id}": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Find transaction data",
+                "description": "Find Transaction",
+                "operationId": "1aec2071526ab5fef5f10bd6802dfc37",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get Transaction"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Put transaction data",
+                "description": "Put Transaction",
+                "operationId": "9042a6ab13891bd69f6ac5fae7507f52",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Transaction"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful Put transaction"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Delete transaction data",
+                "description": "Delete Transaction",
+                "operationId": "377707e0473c0fd5d0c69b0531de107d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful delete transaction"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/users": {
             "post": {
                 "tags": [
@@ -611,6 +765,39 @@
                     "date": {
                         "type": "string",
                         "example": "2023-12-12"
+                    }
+                },
+                "type": "object"
+            },
+            "Transaction": {
+                "properties": {
+                    "user_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "Banjarejo"
+                    },
+                    "date": {
+                        "type": "string",
+                        "example": "2023-12-12"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "tests"
+                    },
+                    "transaction_type_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "business_category_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "price": {
+                        "type": "integer",
+                        "example": "1000"
                     }
                 },
                 "type": "object"
