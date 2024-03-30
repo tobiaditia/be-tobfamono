@@ -66,7 +66,6 @@ class BusinessRepository
      */
     public function delete(int $id): bool
     {
-        Transaction::where('business_id', $id)->delete();
         return Business::where('id', $id)->delete();
     }
 
