@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Transaction;
+namespace App\Http\Requests\BusinessTransaction;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class FindTransactionAPIRequest extends FormRequest
+class FindBusinessTransactionAPIRequest extends FormRequest
 {
 
     use WriteRuleTrait;

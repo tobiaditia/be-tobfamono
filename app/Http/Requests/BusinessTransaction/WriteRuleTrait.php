@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Requests\Transaction;
+namespace App\Http\Requests\BusinessTransaction;
 
 use App\Models\Business;
-use App\Models\Transaction;
-use App\Models\TransactionItem;
-use App\Models\TransactionType;
+use App\Models\BusinessTransaction;
+use App\Models\BusinessTransactionItem;
+use App\Models\BusinessTransactionType;
 
 trait WriteRuleTrait
 {
@@ -14,7 +14,7 @@ trait WriteRuleTrait
     {
         return [
             'required',
-            'exists:'. Transaction::class . ',id'
+            'exists:'. BusinessTransaction::class . ',id'
         ];
     }
 
@@ -26,19 +26,19 @@ trait WriteRuleTrait
         ];
     }
 
-    public function getTransactionTypeIdRules(): array
+    public function getBusinessTransactionTypeIdRules(): array
     {
         return [
             'required',
-            'exists:'. TransactionType::class . ',id'
+            'exists:'. BusinessTransactionType::class . ',id'
         ];
     }
 
-    public function getTransactionItemIdRules(): array
+    public function getBusinessTransactionItemIdRules(): array
     {
         return [
             'required',
-            'exists:'. TransactionItem::class . ',id'
+            'exists:'. BusinessTransactionItem::class . ',id'
         ];
     }
 

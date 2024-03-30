@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @OA\Schema(
- *   schema="Transaction",
+ *   schema="BusinessTransaction",
  *   @OA\Property(
  *     property="business_id",
  *     type="int",
  *     example="1"
  *   ),
  *   @OA\Property(
- *     property="transaction_type_id",
+ *     property="business_transaction_type_id",
  *     type="int",
  *     example="1"
  *   ),
  *   @OA\Property(
- *     property="transaction_item_id",
+ *     property="business_transaction_item_id",
  *     type="int",
  *     example="1"
  *   ),
@@ -39,7 +39,7 @@ use Illuminate\Database\Eloquent\Model;
  *   ),
  * )
  */
-class Transaction extends Model
+class BusinessTransaction extends Model
 {
     /**
      * ambil transaksi yang bisnis nya user_id nya milik user yang sedang login

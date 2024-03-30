@@ -3,16 +3,17 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\BusinessTransactionType;
 use App\Models\TransactionType;
 
-class TransactionTypeAPIController extends Controller
+class BusinessTransactionTypeAPIController extends Controller
 {
 
     /**
      * @OA\Get(
-     *      path="/api/transactionTypes",
+     *      path="/api/businessTransactionTypes",
      *      summary="Get transaction type data",
-     *      tags={"Transaction Types"},
+     *      tags={"Business Transaction Types"},
      *      description="Get transaction type",
      *      security={{"bearer":{}}},
      *      @OA\Response(
@@ -23,7 +24,7 @@ class TransactionTypeAPIController extends Controller
      */
     public function get()
     {
-        $transactionTypes = TransactionType::all()->toArray();
+        $transactionTypes = BusinessTransactionType::all()->toArray();
         return $this->sendResponse($transactionTypes, __('messages.retrivied'));
     }
 

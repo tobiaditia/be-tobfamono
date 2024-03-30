@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Transaction;
+namespace App\Http\Requests\BusinessTransaction;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DeleteTransactionAPIRequest extends FormRequest
+class DeleteBusinessTransactionAPIRequest extends FormRequest
 {
 
     use WriteRuleTrait;

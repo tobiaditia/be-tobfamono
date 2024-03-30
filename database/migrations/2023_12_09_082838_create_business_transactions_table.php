@@ -11,11 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
+        Schema::create('business_transactions', function (Blueprint $table) {
             $table->id();
             $table->integer('business_id')->unsigned();
-            $table->integer('transaction_type_id')->unsigned();
-            $table->integer('transaction_item_id')->unsigned();
+            $table->integer('business_transaction_type_id')->unsigned();
+            $table->integer('business_transaction_item_id')->unsigned();
             $table->float('total');
             $table->integer('multiplier');
             $table->date('date');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transactions');
+        Schema::dropIfExists('business_transactions');
     }
 };

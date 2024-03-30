@@ -3,12 +3,11 @@
 use App\Http\Controllers\API\AuthenticationAPIController;
 use App\Http\Controllers\API\BusinessAPIController;
 use App\Http\Controllers\API\BusinessCategoryAPIController;
+use App\Http\Controllers\API\BusinessTransactionAPIController;
+use App\Http\Controllers\API\BusinessTransactionItemAPIController;
+use App\Http\Controllers\API\BusinessTransactionTypeAPIController;
 use App\Http\Controllers\API\InitAPIController;
-use App\Http\Controllers\API\TransactionAPIController;
-use App\Http\Controllers\API\TransactionItemAPIController;
-use App\Http\Controllers\API\TransactionTypeAPIController;
 use App\Http\Controllers\API\UserAPIController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,14 +58,14 @@ Route::group([
     });
 
     Route::group([
-        'prefix' => '/transactions'
+        'prefix' => '/businessTransactions'
     ], function () {
-        Route::get('', [TransactionAPIController::class, 'get']);
-        Route::get('/{businessId}/business', [TransactionAPIController::class, 'getByBusiness']);
-        Route::get('/{id}', [TransactionAPIController::class, 'find']);
-        Route::post('', [TransactionAPIController::class, 'create']);
-        Route::put('/{id}', [TransactionAPIController::class, 'update']);
-        Route::delete('/{id}', [TransactionAPIController::class, 'delete']);
+        Route::get('', [BusinessTransactionAPIController::class, 'get']);
+        Route::get('/{businessId}/business', [BusinessTransactionAPIController::class, 'getByBusiness']);
+        Route::get('/{id}', [BusinessTransactionAPIController::class, 'find']);
+        Route::post('', [BusinessTransactionAPIController::class, 'create']);
+        Route::put('/{id}', [BusinessTransactionAPIController::class, 'update']);
+        Route::delete('/{id}', [BusinessTransactionAPIController::class, 'delete']);
     });
 
     Route::group([
@@ -76,15 +75,15 @@ Route::group([
     });
 
     Route::group([
-        'prefix' => '/transactionItems'
+        'prefix' => '/businessTransactionItems'
     ], function () {
-        Route::get('', [TransactionItemAPIController::class, 'get']);
+        Route::get('', [BusinessTransactionItemAPIController::class, 'get']);
     });
 
     Route::group([
-        'prefix' => '/transactionTypes'
+        'prefix' => '/businessTransactionTypes'
     ], function () {
-        Route::get('', [TransactionTypeAPIController::class, 'get']);
+        Route::get('', [BusinessTransactionTypeAPIController::class, 'get']);
     });
 
     Route::group([

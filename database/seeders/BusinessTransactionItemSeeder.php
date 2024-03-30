@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use App\Models\TransactionItem;
+use App\Models\BusinessTransactionItem;
 use Illuminate\Database\Seeder;
 
-class TransactionItemSeeder extends Seeder
+class BusinessTransactionItemSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +14,7 @@ class TransactionItemSeeder extends Seeder
      */
     public function run()
     {
-        TransactionItem::truncate();
+        BusinessTransactionItem::truncate();
 
         $datas = [
             [
@@ -35,7 +35,7 @@ class TransactionItemSeeder extends Seeder
         ];
 
         foreach($datas as $data){
-            TransactionItem::create([
+            BusinessTransactionItem::create([
                 'id' => $data['id'],
                 'name' => [
                     'id-ID' => $data['id-ID'],

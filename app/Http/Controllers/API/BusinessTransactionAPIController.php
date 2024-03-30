@@ -3,19 +3,21 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Transaction\CreateTransactionAPIRequest;
-use App\Http\Requests\Transaction\DeleteTransactionAPIRequest;
-use App\Http\Requests\Transaction\UpdateTransactionAPIRequest;
-use App\Repositories\TransactionRepository;
+use App\Http\Requests\BusinessTransaction\CreateBusinessTransactionAPIRequest;
+use App\Http\Requests\BusinessTransaction\CreateTransactionAPIRequest;
+use App\Http\Requests\BusinessTransaction\DeleteBusinessTransactionAPIRequest;
+use App\Http\Requests\BusinessTransaction\UpdateBusinessTransactionAPIRequest;
+use App\Http\Requests\BusinessTransaction\UpdateTransactionAPIRequest;
+use App\Repositories\BusinessTransactionRepository;
 
-class TransactionAPIController extends Controller
+class BusinessTransactionAPIController extends Controller
 {
 
     /**
      * @OA\Get(
-     *      path="/api/transactions",
+     *      path="/api/businessTransactions",
      *      summary="Get transaction data",
-     *      tags={"Transactions"},
+     *      tags={"Business Transactions"},
      *      description="Get transaction",
      *      security={{"bearer":{}}},
      *      @OA\Response(
@@ -24,17 +26,17 @@ class TransactionAPIController extends Controller
      *      )
      * )
      */
-    public function get(TransactionRepository $transactionRepository)
+    public function get(BusinessTransactionRepository $repo)
     {
-        $transactions = $transactionRepository->get();
-        return $this->sendResponse($transactions, __('messages.retrivied'));
+        $businessTransactions = $repo->get();
+        return $this->sendResponse($businessTransactions, __('messages.retrivied'));
     }
 
     /**
      * @OA\Get(
-     *      path="/api/transactions/{businessId}/business",
+     *      path="/api/businessTransactions/{businessId}/business",
      *      summary="Get transaction data by business",
-     *      tags={"Transactions"},
+     *      tags={"Business Transactions"},
      *      description="Get transaction",
      *      security={{"bearer":{}}},
      *      @OA\Parameter(
@@ -51,10 +53,10 @@ class TransactionAPIController extends Controller
      *      )
      * )
      */
-    public function getByBusiness(int $businessId, TransactionRepository $transactionRepository)
+    public function getByBusiness(int $businessId, BusinessTransactionRepository $repo)
     {
-        $transactions = $transactionRepository->getByBusiness($businessId);
-        return $this->sendResponse($transactions, __('messages.retrivied'));
+        $businessTransactions = $repo->getByBusiness($businessId);
+        return $this->sendResponse($businessTransactions, __('messages.retrivied'));
     }
 
     /**
@@ -62,14 +64,14 @@ class TransactionAPIController extends Controller
      * @param CreateTransactionAPIRequest $request
      *
      * @OA\Post(
-     *      path="/api/transactions",
+     *      path="/api/businessTransactions",
      *      summary="Post transaction data",
-     *      tags={"Transactions"},
+     *      tags={"Business Transactions"},
      *      description="Post Transactions",
      *      security={{"bearer":{}}},
      *
      *      @OA\RequestBody(
-     *          @OA\JsonContent(ref="#/components/schemas/Transaction")
+     *          @OA\JsonContent(ref="#/components/schemas/BusinessTransaction")
      *      ),
      *
      *      @OA\Response(
@@ -86,21 +88,21 @@ class TransactionAPIController extends Controller
      *      )
      * )
      */
-    public function create(CreateTransactionAPIRequest $request, TransactionRepository $transactionRepository)
+    public function create(CreateBusinessTransactionAPIRequest $request, BusinessTransactionRepository $repo)
     {
-        $transaction = $transactionRepository->create($request->all());
-        return $this->sendResponse($transaction, __('messages.retrivied'));
+        $businessTransaction = $repo->create($request->all());
+        return $this->sendResponse($businessTransaction, __('messages.retrivied'));
     }
 
     /**
-     * Put Transaction
+     * Put Business Transaction
      * @param UpdateTransactionAPIRequest $request
      * @param int $id
      *
      * @OA\Put(
-     *      path="/api/transactions/{id}",
+     *      path="/api/businesstTransactions/{id}",
      *      summary="Put transaction data",
-     *      tags={"Transactions"},
+     *      tags={"Business Transactions"},
      *      description="Put Transaction",
      *      security={{"bearer":{}}},
      *
@@ -114,7 +116,7 @@ class TransactionAPIController extends Controller
      *      ),
      *
      *      @OA\RequestBody(
-     *          @OA\JsonContent(ref="#/components/schemas/Transaction")
+     *          @OA\JsonContent(ref="#/components/schemas/BusinessTransaction")
      *      ),
      *
      *      @OA\Response(
@@ -131,17 +133,17 @@ class TransactionAPIController extends Controller
      *      )
      * )
      */
-    public function update(UpdateTransactionAPIRequest $request, int $id, TransactionRepository $transactionRepository)
+    public function update(UpdateBusinessTransactionAPIRequest $request, int $id, BusinessTransactionRepository $repo)
     {
-        $transaction = $transactionRepository->update($id, $request->all());
-        return $this->sendResponse($transaction, __('messages.retrivied'));
+        $businessTransaction = $repo->update($id, $request->all());
+        return $this->sendResponse($businessTransaction, __('messages.retrivied'));
     }
 
     /**
      * @OA\Delete(
-     *      path="/api/transactions/{id}",
+     *      path="/api/businessTransactions/{id}",
      *      summary="Delete transaction data",
-     *      tags={"Transactions"},
+     *      tags={"Business Transactions"},
      *      description="Delete Transaction",
      *      security={{"bearer":{}}},
      *      @OA\Parameter(
@@ -158,10 +160,10 @@ class TransactionAPIController extends Controller
      *      )
      * )
      */
-    public function delete(DeleteTransactionAPIRequest $request, int $id, TransactionRepository $transactionRepository)
+    public function delete(DeleteBusinessTransactionAPIRequest $request, int $id, BusinessTransactionRepository $repo)
     {
-        $transaction = $transactionRepository->delete($id);
-        return $this->sendResponse($transaction, __('messages.retrivied'));
+        $businessTransaction = $repo->delete($id);
+        return $this->sendResponse($businessTransaction, __('messages.retrivied'));
     }
 
 }

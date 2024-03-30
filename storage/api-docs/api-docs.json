@@ -279,34 +279,14 @@
                 ]
             }
         },
-        "/api/inits": {
+        "/api/businessTransactions": {
             "get": {
                 "tags": [
-                    "Init"
-                ],
-                "summary": "Get init data",
-                "description": "Get Init",
-                "operationId": "4c05e29c3ff31208d40feffed0180e1a",
-                "responses": {
-                    "200": {
-                        "description": "successful get init"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/api/transactions": {
-            "get": {
-                "tags": [
-                    "Transactions"
+                    "Business Transactions"
                 ],
                 "summary": "Get transaction data",
                 "description": "Get transaction",
-                "operationId": "9742523dbd7d1b65e62d315300ba7256",
+                "operationId": "1af451866ce9ebb3df3aa8dce48684cd",
                 "responses": {
                     "200": {
                         "description": "successful get transaction item"
@@ -320,16 +300,16 @@
             },
             "post": {
                 "tags": [
-                    "Transactions"
+                    "Business Transactions"
                 ],
                 "summary": "Post transaction data",
                 "description": "Post Transactions",
-                "operationId": "d704a565af6760412bb4a3aefa71af9f",
+                "operationId": "13fb33812e3471000f084d69bd58ae46",
                 "requestBody": {
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Transaction"
+                                "$ref": "#/components/schemas/BusinessTransaction"
                             }
                         }
                     }
@@ -352,14 +332,14 @@
                 ]
             }
         },
-        "/api/transactions/{businessId}/business": {
+        "/api/businessTransactions/{businessId}/business": {
             "get": {
                 "tags": [
-                    "Transactions"
+                    "Business Transactions"
                 ],
                 "summary": "Get transaction data by business",
                 "description": "Get transaction",
-                "operationId": "3271f37e19c84dcd4781f346152be013",
+                "operationId": "40670bf65da796e29a2f9931e41840ff",
                 "parameters": [
                     {
                         "name": "businessId",
@@ -382,14 +362,14 @@
                 ]
             }
         },
-        "/api/transactions/{id}": {
+        "/api/businesstTransactions/{id}": {
             "put": {
                 "tags": [
-                    "Transactions"
+                    "Business Transactions"
                 ],
                 "summary": "Put transaction data",
                 "description": "Put Transaction",
-                "operationId": "9042a6ab13891bd69f6ac5fae7507f52",
+                "operationId": "452c0103963cfc54249c2480fa95e6be",
                 "parameters": [
                     {
                         "name": "id",
@@ -404,7 +384,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "$ref": "#/components/schemas/Transaction"
+                                "$ref": "#/components/schemas/BusinessTransaction"
                             }
                         }
                     }
@@ -425,14 +405,16 @@
                         "bearer": []
                     }
                 ]
-            },
+            }
+        },
+        "/api/businessTransactions/{id}": {
             "delete": {
                 "tags": [
-                    "Transactions"
+                    "Business Transactions"
                 ],
                 "summary": "Delete transaction data",
                 "description": "Delete Transaction",
-                "operationId": "377707e0473c0fd5d0c69b0531de107d",
+                "operationId": "e39ef806b544cc3bbd4d683647a6c046",
                 "parameters": [
                     {
                         "name": "id",
@@ -455,14 +437,14 @@
                 ]
             }
         },
-        "/api/transactionItems": {
+        "/api/businessTransactionItems": {
             "get": {
                 "tags": [
-                    "Transaction Items"
+                    "Business Transaction Items"
                 ],
                 "summary": "Get transaction item data",
                 "description": "Get transaction item",
-                "operationId": "fd1268e397714eafdf3975cbf98c5656",
+                "operationId": "2aedea16e6c24b317593fa5209b73af7",
                 "responses": {
                     "200": {
                         "description": "successful get transaction item"
@@ -475,17 +457,37 @@
                 ]
             }
         },
-        "/api/transactionTypes": {
+        "/api/businessTransactionTypes": {
             "get": {
                 "tags": [
-                    "Transaction Types"
+                    "Business Transaction Types"
                 ],
                 "summary": "Get transaction type data",
                 "description": "Get transaction type",
-                "operationId": "40f9f41ce2a6fddf60cbf0d28885c58e",
+                "operationId": "948d0910522cb87d348f83829e2ed6be",
                 "responses": {
                     "200": {
                         "description": "successful get transaction type"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/inits": {
+            "get": {
+                "tags": [
+                    "Init"
+                ],
+                "summary": "Get init data",
+                "description": "Get Init",
+                "operationId": "4c05e29c3ff31208d40feffed0180e1a",
+                "responses": {
+                    "200": {
+                        "description": "successful get init"
                     }
                 },
                 "security": [
@@ -584,17 +586,17 @@
                 },
                 "type": "object"
             },
-            "Transaction": {
+            "BusinessTransaction": {
                 "properties": {
                     "business_id": {
                         "type": "integer",
                         "example": "1"
                     },
-                    "transaction_type_id": {
+                    "business_transaction_type_id": {
                         "type": "integer",
                         "example": "1"
                     },
-                    "transaction_item_id": {
+                    "business_transaction_item_id": {
                         "type": "integer",
                         "example": "1"
                     },

@@ -13,8 +13,8 @@ class SystemSeeder extends Seeder
     {
         $this->call([
             BusinessCategorySeeder::class,
-            TransactionTypeSeeder::class,
-            TransactionItemSeeder::class,
+            BusinessTransactionTypeSeeder::class,
+            BusinessTransactionItemSeeder::class,
 
         ]);
     }

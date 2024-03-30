@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\BusinessTransactionType;
 use App\Models\TransactionType;
 use Illuminate\Database\Seeder;
 
-class TransactionTypeSeeder extends Seeder
+class BusinessTransactionTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,7 +15,7 @@ class TransactionTypeSeeder extends Seeder
      */
     public function run()
     {
-        TransactionType::truncate();
+        BusinessTransactionType::truncate();
 
         $datas = [
             [
@@ -30,7 +31,7 @@ class TransactionTypeSeeder extends Seeder
         ];
 
         foreach($datas as $data){
-            TransactionType::create([
+            BusinessTransactionType::create([
                 'id' => $data['id'],
                 'name' => [
                     'id-ID' => $data['id-ID'],
