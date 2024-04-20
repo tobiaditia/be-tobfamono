@@ -583,6 +583,29 @@
                 }
             }
         },
+        "/api/search": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get villages data",
+                "operationId": "3835430d88051fa6caeb74b1b4a3b505",
+                "parameters": [
+                    {
+                        "name": "search",
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
+                    }
+                }
+            }
+        },
         "/api/transactions": {
             "get": {
                 "tags": [

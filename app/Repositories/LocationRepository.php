@@ -50,4 +50,39 @@ class LocationRepository
         return Village::where('district_id', $districtId)->get()->toArray();
     }
 
+    /**
+     *
+     * @param array $input
+     * @return array
+     */
+    public function search(array $input): array
+    {
+        $search = $input['search'] ?? null;
+
+        $villages = Village::when(null != $search, function ($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%')
+                    ->orWhere('pos_code', 'like', '%'.$search.'%');
+            })
+            ->limit(50)
+            ->get()
+        ;
+
+        $data = [];
+
+        foreach ($villages as $village) {
+            $district = District::where('id', $village->district_id)->first();
+            $city = City::where('id', $district->city_id)->first();
+            $province = Province::where('id', $city->province_id)->first();
+
+            $village->full_name = $province->name . ' - ' . 
+                $city->name . ' - ' .
+                $district->name . ' - ' .
+                $village->name . ' (' . $village->pos_code . ')';
+
+            $data[] = $village;
+        }
+
+        return $data;
+    }
+
 }

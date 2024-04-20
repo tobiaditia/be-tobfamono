@@ -46,6 +46,7 @@ Route::get('/provinces', [LocationAPIController::class, 'provinces']);
 Route::get('/cities/{provinceId}', [LocationAPIController::class, 'cities']);
 Route::get('/districts/{cityId}', [LocationAPIController::class, 'districts']);
 Route::get('/villages/{districtId}', [LocationAPIController::class, 'villages']);
+Route::get('/search', [LocationAPIController::class, 'search']);
 
 Route::group([
     'middleware' => 'auth:api'

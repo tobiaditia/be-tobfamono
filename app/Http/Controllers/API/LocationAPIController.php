@@ -7,6 +7,7 @@ use App\Http\Requests\Location\CityAPIRequest;
 use App\Http\Requests\Location\DistrictAPIRequest;
 use App\Http\Requests\Location\VillageAPIRequest;
 use App\Repositories\LocationRepository;
+use Illuminate\Http\Request;
 
 class LocationAPIController extends Controller
 {
@@ -100,6 +101,30 @@ class LocationAPIController extends Controller
     public function villages(VillageAPIRequest $request, int $districtId, LocationRepository $locationRepository)
     {
         $data = $locationRepository->villages($districtId);
+        return $this->sendResponse($data, __('messages.retrivied'));
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/search",
+     *      summary="Get villages data",
+     *      tags={"Location"},
+     *      @OA\Parameter(
+     *         name="search",
+     *         @OA\Schema(
+     *             type="string",
+     *         ),
+     *         in="query"
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful get business",
+     *      )
+     * )
+     */
+    public function search(Request $request, LocationRepository $locationRepository)
+    {
+        $data = $locationRepository->search($request->all());
         return $this->sendResponse($data, __('messages.retrivied'));
     }
 
