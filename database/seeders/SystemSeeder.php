@@ -15,7 +15,11 @@ class SystemSeeder extends Seeder
             BusinessCategorySeeder::class,
             BusinessTransactionTypeSeeder::class,
             BusinessTransactionItemSeeder::class,
-            TransactionTypeSeeder::class,
+            CountrySeeder::class,
+            ProvinceSeeder::class,
+            CitySeeder::class,
+            DistrictSeeder::class,
+            VillageSeeder::class,
 
         ]);
     }

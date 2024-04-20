@@ -7,6 +7,7 @@ use App\Http\Controllers\API\BusinessTransactionAPIController;
 use App\Http\Controllers\API\BusinessTransactionItemAPIController;
 use App\Http\Controllers\API\BusinessTransactionTypeAPIController;
 use App\Http\Controllers\API\InitAPIController;
+use App\Http\Controllers\API\LocationAPIController;
 use App\Http\Controllers\API\TransactionAPIController;
 use App\Http\Controllers\API\UserAPIController;
 use Illuminate\Support\Facades\Route;
@@ -40,6 +41,11 @@ Route::group([
 ], function () {
     Route::post('', [UserAPIController::class, 'create']);
 });
+
+Route::get('/provinces', [LocationAPIController::class, 'provinces']);
+Route::get('/cities/{provinceId}', [LocationAPIController::class, 'cities']);
+Route::get('/districts/{cityId}', [LocationAPIController::class, 'districts']);
+Route::get('/villages/{districtId}', [LocationAPIController::class, 'villages']);
 
 Route::group([
     'middleware' => 'auth:api'

@@ -497,6 +497,92 @@
                 ]
             }
         },
+        "/api/provinces": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get Province data",
+                "operationId": "93e9a8ee31c3411d9e20f8237e19d0ab",
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
+                    }
+                }
+            }
+        },
+        "/api/cities/{provinceId}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get cities data",
+                "operationId": "a95400cbd28001d5629a37eebe020656",
+                "parameters": [
+                    {
+                        "name": "provinceId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
+                    }
+                }
+            }
+        },
+        "/api/districts/{cityId}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get districts data",
+                "operationId": "29cee0728e460b60c91f7ebc589303b1",
+                "parameters": [
+                    {
+                        "name": "cityId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
+                    }
+                }
+            }
+        },
+        "/api/villages/{districtId}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get villages data",
+                "operationId": "0e2ca7c7fa30a3ecbc7de5d07c38cca1",
+                "parameters": [
+                    {
+                        "name": "districtId",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
+                    }
+                }
+            }
+        },
         "/api/transactions": {
             "get": {
                 "tags": [

@@ -17,6 +17,11 @@ return new class extends Migration
             $table->string('name');
             $table->text('address')->nullable();
             $table->integer('business_category_id')->unsigned();
+            $table->integer('country_id')->unsigned()->default(1);
+            $table->integer('province_id')->unsigned()->default(1);
+            $table->integer('city_id')->unsigned()->default(1);
+            $table->integer('district_id')->unsigned()->default(1);
+            $table->integer('village_id')->unsigned()->default(1);
             $table->timestamps();
         });
     }
