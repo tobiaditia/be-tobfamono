@@ -23,6 +23,7 @@ class CitySeeder extends Seeder
         foreach($datas as $data){
             City::create([
                 'id' => $data['id'],
+                'type' => $data['type'] == 'Kota' ? 1 : 2,
                 'code' => $data['code'],
                 'full_code' => $data['full_code'],
                 'province_id' => $data['provinsi_id'],

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('full_code')->nullable();
             $table->integer('province_id')->unsigned();
+            $table->integer('type')->default(1)->unsigned()->comment('1:kota 2:kabupaten');
             $table->string('name');
         });
     }
