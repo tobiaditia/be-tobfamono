@@ -22,6 +22,11 @@ class BusinessCategorySeeder extends Seeder
                 'id-ID' => 'Ikan Lele',
                 'en-US' => 'Catfish'
             ],
+            [
+                'id' => 1,
+                'id-ID' => 'Ikan Gurame',
+                'en-US' => 'Gurame'
+            ],
         ];
 
         foreach($datas as $data){

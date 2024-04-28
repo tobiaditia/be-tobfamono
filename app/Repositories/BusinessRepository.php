@@ -39,6 +39,10 @@ class BusinessRepository
         $business->user_id = Auth::user()->id;
         $business->address = $request['address'];
         $business->business_category_id = $request['business_category_id'];
+        $business->province_id = $request['province_id'];
+        $business->city_id = $request['city_id'];
+        $business->district_id = $request['district_id'];
+        $business->village_id = $request['village_id'];
         $business->save();
 
         return $this->find($business->id);
@@ -56,6 +60,10 @@ class BusinessRepository
         $business->name = $request['name'];
         $business->address = $request['address'];
         $business->business_category_id = $request['business_category_id'];
+        $business->province_id = $request['province_id'];
+        $business->city_id = $request['city_id'];
+        $business->district_id = $request['district_id'];
+        $business->village_id = $request['village_id'];
         $business->save();
 
         return $this->find($business->id);

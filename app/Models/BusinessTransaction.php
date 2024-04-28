@@ -49,5 +49,8 @@ class BusinessTransaction extends Model
         return $query->whereHas()->where('user_id', auth()->id());
     }
 
-
+    public function business()
+    {
+        return $this->belongsTo(Business::class);
+    }
 }

@@ -69,6 +69,7 @@ Route::group([
         'prefix' => '/businessTransactions'
     ], function () {
         Route::get('', [BusinessTransactionAPIController::class, 'get']);
+        Route::get('/stats', [BusinessTransactionAPIController::class, 'stats']);
         Route::get('/{businessId}/business', [BusinessTransactionAPIController::class, 'getByBusiness']);
         Route::get('/{id}', [BusinessTransactionAPIController::class, 'find']);
         Route::post('', [BusinessTransactionAPIController::class, 'create']);

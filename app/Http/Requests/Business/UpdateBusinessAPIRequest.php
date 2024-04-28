@@ -16,11 +16,16 @@ class UpdateBusinessAPIRequest extends FormRequest
      */
     public function rules()
     {
+        $input = $this->all();
         return [
             'id' => $this->getIdRules(),
             'name' => $this->getNameRules(),
             'address' => $this->getAddressRules(),
             'business_category_id' => $this->getBusinessCategoryIdRules(),
+            'province_id' => $this->getProvinceIdRules(),
+            'city_id' => $this->getCityIdRules($input),
+            'district_id' => $this->getDistrictIdRules($input),
+            'village_id' => $this->getVillageIdRules($input),
         ];
     }
 

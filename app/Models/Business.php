@@ -14,6 +14,26 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *     example="Usaha 1"
  *   ),
  *   @OA\Property(
+ *     property="province_id",
+ *     type="int",
+ *     example="1"
+ *   ),
+ *   @OA\Property(
+ *     property="city_id",
+ *     type="int",
+ *     example="1"
+ *   ),
+ *   @OA\Property(
+ *     property="district_id",
+ *     type="int",
+ *     example="144"
+ *   ),
+ *   @OA\Property(
+ *     property="village_id",
+ *     type="int",
+ *     example="80776"
+ *   ),
+ *   @OA\Property(
  *     property="address",
  *     type="string",
  *     example="Jakarta"
@@ -22,7 +42,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  *     property="business_category_id",
  *     type="int",
  *     example="1"
- *   ),
+ *   )
  * )
  */
 

@@ -9,6 +9,7 @@ use App\Http\Requests\BusinessTransaction\DeleteBusinessTransactionAPIRequest;
 use App\Http\Requests\BusinessTransaction\UpdateBusinessTransactionAPIRequest;
 use App\Http\Requests\BusinessTransaction\UpdateTransactionAPIRequest;
 use App\Repositories\BusinessTransactionRepository;
+use Illuminate\Http\Request;
 
 class BusinessTransactionAPIController extends Controller
 {
@@ -29,6 +30,67 @@ class BusinessTransactionAPIController extends Controller
     public function get(BusinessTransactionRepository $repo)
     {
         $businessTransactions = $repo->get();
+        return $this->sendResponse($businessTransactions, __('messages.retrivied'));
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/businessTransactions/stats",
+     *      summary="Stats transaction data",
+     *      tags={"Business Transactions"},
+     *      description="Stats transaction",
+     *      security={{"bearer":{}}},
+     *      @OA\Parameter(
+     *          name="date_started",
+     *          @OA\Schema(
+     *            type="stirng"
+     *          ),
+     *          in="query"
+     *      ),
+     *      @OA\Parameter(
+     *          name="date_ended",
+     *          @OA\Schema(
+     *            type="stirng"
+     *          ),
+     *          in="query"
+     *      ),
+     *      @OA\Parameter(
+     *          name="province_id",
+     *          @OA\Schema(
+     *            type="integer"
+     *          ),
+     *          in="query"
+     *      ),
+     *      @OA\Parameter(
+     *          name="city_id",
+     *          @OA\Schema(
+     *            type="integer"
+     *          ),
+     *          in="query"
+     *      ),
+     *      @OA\Parameter(
+     *          name="district_id",
+     *          @OA\Schema(
+     *            type="integer"
+     *          ),
+     *          in="query"
+     *      ),
+     *      @OA\Parameter(
+     *          name="village_id",
+     *          @OA\Schema(
+     *            type="integer"
+     *          ),
+     *          in="query"
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful get transaction item",
+     *      )
+     * )
+     */
+    public function stats(Request $request, BusinessTransactionRepository $repo)
+    {
+        $businessTransactions = $repo->stats($request->all());
         return $this->sendResponse($businessTransactions, __('messages.retrivied'));
     }
 

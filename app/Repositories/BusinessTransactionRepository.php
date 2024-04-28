@@ -2,7 +2,12 @@
 
 namespace App\Repositories;
 
+use App\Models\Business;
+use App\Models\BusinessCategory;
 use App\Models\BusinessTransaction;
+use App\Models\BusinessTransactionItem;
+use App\Models\BusinessTransactionType;
+use Carbon\Carbon;
 
 class BusinessTransactionRepository
 {
@@ -13,6 +18,86 @@ class BusinessTransactionRepository
     public function get(): array
     {
         return BusinessTransaction::get()->toArray();
+    }
+
+    /**
+     *
+     * @return array
+     */
+    public function stats(array $input): array
+    {
+
+        $dateStarted = $input['date_started'] ?? Carbon::now()->firstOfYear()->format('Y-m-d');
+        $dateEnded = $input['date_ended'] ?? Carbon::now()->endOfYear()->format('Y-m-d');
+        $provinceId = $input['province_id'] ?? 0;
+        $cityId = $input['city_id'] ?? 0;
+        $districtId = $input['district_id'] ?? 0;
+        $villageId = $input['village_id'] ?? 0;
+        $businessCategories = BusinessCategory::get();
+
+        $a = [];
+        foreach ($businessCategories as $businessCategory) {
+            $businessTrans = BusinessTransaction::
+                whereBetween('date', [$dateStarted, $dateEnded])
+                ->where('business_transaction_item_id', BusinessTransactionItem::HASIL_USAHA)
+                ->where('business_transaction_type_id', BusinessTransactionType::SELL)
+                ->whereHas('business', function ($query) use ($businessCategory, $provinceId, $cityId , $districtId , $villageId) {
+                    $query->where('business_category_id', $businessCategory->id)
+                    ->when($provinceId != 0, function ($business) use ($provinceId) {
+                        $business->where('province_id', $provinceId);
+                    })
+                    ->when($cityId != 0, function ($business) use ($cityId) {
+                        $business->where('city_id', $cityId);
+                    })
+                    ->when($districtId != 0, function ($business) use ($districtId) {
+                        $business->where('district_id', $districtId);
+                    })
+                    ->when($villageId != 0, function ($business) use ($villageId) {
+                        $business->where('village_id', $villageId);
+                    })
+                    ;
+                })
+                ->get()
+            ;
+
+            $avg = 0;
+            $totalAmountTrans = 0;
+            $total = 0;
+            $group = [];
+            $results = [];
+            foreach ($businessTrans as $businessTran) {
+                if(empty($group[$businessTran->date])){
+                    $group[$businessTran->date] = $businessTran->total;
+                }else{
+                    $group[$businessTran->date] = $group[$businessTran->date] + $businessTran->total;
+                }
+
+                $totalAmountTrans += 1;
+                $total += $businessTran->total;
+            }
+
+            if($totalAmountTrans > 0){
+                $avg = $total / $totalAmountTrans;
+            }
+
+            foreach ($group as $date => $value) {
+                $results[] = [
+                    'date' => $date,
+                    'total' => $value
+                ];
+            }
+
+            $a[] = [
+                'business_category' => [
+                    'id' => $businessCategory->id,
+                    'name' => $businessCategory->name,
+                ],
+                'avg' => round($avg, 2),
+                'stats' => (array)$results,
+            ];
+        }
+
+        return $a;
     }
 
     /**

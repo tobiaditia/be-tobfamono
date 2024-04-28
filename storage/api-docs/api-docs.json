@@ -332,6 +332,70 @@
                 ]
             }
         },
+        "/api/businessTransactions/stats": {
+            "get": {
+                "tags": [
+                    "Business Transactions"
+                ],
+                "summary": "Stats transaction data",
+                "description": "Stats transaction",
+                "operationId": "46b590581955b50526a52544d329b659",
+                "parameters": [
+                    {
+                        "name": "date_started",
+                        "in": "query",
+                        "schema": {
+                            "type": "stirng"
+                        }
+                    },
+                    {
+                        "name": "date_ended",
+                        "in": "query",
+                        "schema": {
+                            "type": "stirng"
+                        }
+                    },
+                    {
+                        "name": "province_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "city_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "district_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "village_id",
+                        "in": "query",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get transaction item"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/businessTransactions/{businessId}/business": {
             "get": {
                 "tags": [
@@ -837,6 +901,22 @@
                     "name": {
                         "type": "string",
                         "example": "Usaha 1"
+                    },
+                    "province_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "city_id": {
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "district_id": {
+                        "type": "integer",
+                        "example": "144"
+                    },
+                    "village_id": {
+                        "type": "integer",
+                        "example": "80776"
                     },
                     "address": {
                         "type": "string",
