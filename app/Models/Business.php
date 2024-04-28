@@ -48,6 +48,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Business extends Model
 {
+    protected $appends = [
+        'full_location',
+    ];
+
     /**
      * ambil bisnis yang user_id nya milik user yang sedang login
      */
@@ -64,5 +68,14 @@ class Business extends Model
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    public function getFullLocationAttribute()
+    {
+        $province = Province::find($this->province_id);
+        $city = City::find($this->city_id);
+        $district = District::find($this->district_id);
+        $village = Village::find($this->village_id);
+        return $province->name .' - '. $city->name.' - '. $district->name.' - '. $village->name;
     }
 }
