@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @OA\Schema(
@@ -52,6 +53,24 @@ class Transaction extends Model
     public function scopeCurrentUser($query)
     {
         return $query->whereHas()->where('user_id', auth()->id());
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function businessCategory(): BelongsTo
+    {
+        return $this->belongsTo(BusinessCategory::class);
     }
 
 

@@ -12,7 +12,7 @@ class TransactionRepository
      */
     public function get(): array
     {
-        return Transaction::get()->toArray();
+        return Transaction::with('user','businessCategory')->get()->toArray();
     }
 
     /**
@@ -22,7 +22,7 @@ class TransactionRepository
      */
     public function find(int $id): array
     {
-        return Transaction::find($id)->toArray();
+        return Transaction::with('user','businessCategory')->find($id)->toArray();
     }
 
     /**

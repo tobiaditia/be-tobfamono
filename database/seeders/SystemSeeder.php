@@ -20,6 +20,7 @@ class SystemSeeder extends Seeder
             CitySeeder::class,
             DistrictSeeder::class,
             VillageSeeder::class,
+            TransactionTypeSeeder::class,
 
         ]);
     }
