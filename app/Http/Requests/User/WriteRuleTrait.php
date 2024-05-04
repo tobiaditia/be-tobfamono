@@ -15,4 +15,13 @@ trait WriteRuleTrait
         ];
     }
 
+    public function getEmailRules(): array
+    {
+        return [
+            'required', 
+            'email', 
+            'unique:users,email'
+        ];
+    }
+
 }

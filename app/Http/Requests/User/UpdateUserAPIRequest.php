@@ -4,10 +4,10 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateUserAPIRequest extends FormRequest
+class UpdateUserAPIRequest extends FormRequest
 {
-
     use WriteRuleTrait;
+
     /**
      * Get the validation rules that apply to the request.
      *
@@ -16,9 +16,15 @@ class CreateUserAPIRequest extends FormRequest
     public function rules()
     {
         return [
+            'id' => $this->getIdRules(),
             'name' => ['required'],
-            'email' => $this->getEmailRules(),
-            'password' => ['required', 'string']
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'id' => $this->route('id')
+        ]);
     }
 }

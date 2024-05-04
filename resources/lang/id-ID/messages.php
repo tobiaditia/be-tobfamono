@@ -2,7 +2,5 @@
 
 return [
     'retrivied' => 'Data berhasil diambil',
-    // 'business' => [
-    //     'retrivied' => 'Data Bisnis berhasil diambil'
-    // ]
+    'unique' => ':attribute sudah digunakan.',
 ];

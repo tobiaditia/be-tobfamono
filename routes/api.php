@@ -109,5 +109,6 @@ Route::group([
         'prefix' => '/users'
     ], function () {
         Route::get('/{id}', [UserAPIController::class, 'find']);
+        Route::put('/{id}', [UserAPIController::class, 'update']);
     });
 });

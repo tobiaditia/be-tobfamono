@@ -847,6 +847,10 @@
                                     "type": "string",
                                     "example": "me@tobfa.id"
                                 },
+                                "handphone": {
+                                    "type": "string",
+                                    "example": "085134221456"
+                                },
                                 "password": {
                                     "type": "string",
                                     "example": "123456"
@@ -884,6 +888,52 @@
                 "responses": {
                     "200": {
                         "description": "successful get user"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update User",
+                "description": "Update User",
+                "operationId": "d64d15aef99fc20b200751904107e28c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": "me"
+                                },
+                                "handphone": {
+                                    "type": "string",
+                                    "example": "085134221456"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
                     }
                 },
                 "security": [
