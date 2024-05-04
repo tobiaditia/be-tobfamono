@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -68,6 +69,42 @@ class Business extends Model
     public function transactions(): HasMany
     {
         return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function province(): BelongsTo
+    {
+        return $this->belongsTo(Province::class);
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function city(): BelongsTo
+    {
+        return $this->belongsTo(City::class);
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function district(): BelongsTo
+    {
+        return $this->belongsTo(District::class);
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function village(): BelongsTo
+    {
+        return $this->belongsTo(Village::class);
     }
 
     public function getFullLocationAttribute()

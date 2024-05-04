@@ -14,7 +14,7 @@ class BusinessRepository
      */
     public function get(): array
     {
-        return Business::currentUser()->get()->toArray();
+        return Business::with('province','city','district','village')->currentUser()->get()->toArray();
     }
 
     /**
@@ -24,7 +24,7 @@ class BusinessRepository
      */
     public function find(int $id): array
     {
-        return Business::find($id)->toArray();
+        return Business::with('province','city','district','village')->find($id)->toArray();
     }
 
     /**

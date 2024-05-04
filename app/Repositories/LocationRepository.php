@@ -27,17 +27,7 @@ class LocationRepository
      */
     public function cities(int $provinceId): array
     {
-        $cities = City::where('province_id', $provinceId)->get()->toArray();
-
-        $data = [];
-        foreach ($cities as $city) {
-            $type = $city['type'] == 1 ? 'Kota' : 'Kabupaten';
-            $name = $type . ' ' . $city['name'];
-            $city['name'] = $name;
-            $data[] = $city;
-        }
-
-        return $data;
+        return City::where('province_id', $provinceId)->get()->toArray();
     }
 
     /**
