@@ -81,6 +81,11 @@ class AuthenticationAPIController extends Controller
      *                  example="me@tobfa.id"
      *              ),
      *              @OA\Property(
+     *                  property="handphone",
+     *                  type="string",
+     *                  example="085895402090"
+     *              ),
+     *              @OA\Property(
      *                  property="password",
      *                  type="string",
      *                  example="123456"

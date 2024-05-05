@@ -42,7 +42,7 @@ class AuthenticationRepository
         /** @var UserRepository */
         $userRepo = app(UserRepository::class);
         $user = $userRepo->create($input);
-        $user = User::find($user->id);
+        $user = User::find($user['id']);
         $user_token = $user->createToken('appToken')->accessToken;
 
         return response()->json([

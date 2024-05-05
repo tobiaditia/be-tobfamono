@@ -59,6 +59,7 @@ Route::group([
         'prefix' => '/businesses'
     ], function () {
         Route::get('', [BusinessAPIController::class, 'get']);
+        Route::get('/user/{id}', [BusinessAPIController::class, 'getByUser']);
         Route::get('/{id}', [BusinessAPIController::class, 'find']);
         Route::post('', [BusinessAPIController::class, 'create']);
         Route::put('/{id}', [BusinessAPIController::class, 'update']);

@@ -7,6 +7,7 @@ use App\Http\Requests\Business\CreateBusinessAPIRequest;
 use App\Http\Requests\Business\DeleteBusinessAPIRequest;
 use App\Http\Requests\Business\FindBusinessAPIRequest;
 use App\Http\Requests\Business\UpdateBusinessAPIRequest;
+use App\Http\Requests\User\FindUserAPIRequest;
 use App\Repositories\BusinessRepository;
 
 class BusinessAPIController extends Controller
@@ -28,6 +29,33 @@ class BusinessAPIController extends Controller
     public function get(BusinessRepository $businessRepository)
     {
         $business = $businessRepository->get();
+        return $this->sendResponse($business, __('messages.retrivied'));
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/businesses/user/{id}",
+     *      summary="Get business data by user",
+     *      tags={"Businesses"},
+     *      description="Get Business by user",
+     *      security={{"bearer":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful get business",
+     *      )
+     * )
+     */
+    public function getByUser(int $id, FindUserAPIRequest $request, BusinessRepository $businessRepository)
+    {
+        $business = $businessRepository->getByUser($id);
         return $this->sendResponse($business, __('messages.retrivied'));
     }
 

@@ -33,7 +33,7 @@ class BusinessTransactionRepository
         $cityId = $input['city_id'] ?? 0;
         $districtId = $input['district_id'] ?? 0;
         $villageId = $input['village_id'] ?? 0;
-        $businessCategories = BusinessCategory::get();
+        $businessCategories = BusinessCategory::where('id',2)->get(); //ambil yang gurame dulu saja
 
         $a = [];
         foreach ($businessCategories as $businessCategory) {

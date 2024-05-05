@@ -19,6 +19,16 @@ class BusinessRepository
 
     /**
      *
+     * @return array
+     */
+    public function getByUser(int $userId): array
+    {
+        return Business::with('province','city','district','village')->where('user_id',$userId)->get()->toArray();
+    }
+
+
+    /**
+     *
      * @param int $id
      * @return array
      */

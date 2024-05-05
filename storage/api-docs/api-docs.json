@@ -69,6 +69,10 @@
                                     "type": "string",
                                     "example": "me@tobfa.id"
                                 },
+                                "handphone": {
+                                    "type": "string",
+                                    "example": "085895402090"
+                                },
                                 "password": {
                                     "type": "string",
                                     "example": "123456"
@@ -149,6 +153,36 @@
                     },
                     "404": {
                         "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/businesses/user/{id}": {
+            "get": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "Get business data by user",
+                "description": "Get Business by user",
+                "operationId": "873aaadefe0ad95ab20fd9b8882c556e",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
                     }
                 },
                 "security": [
