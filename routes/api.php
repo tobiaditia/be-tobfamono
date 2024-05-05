@@ -110,5 +110,6 @@ Route::group([
     ], function () {
         Route::get('/{id}', [UserAPIController::class, 'find']);
         Route::put('/{id}', [UserAPIController::class, 'update']);
+        Route::put('/{id}/password', [UserAPIController::class, 'updatePassword']);
     });
 });

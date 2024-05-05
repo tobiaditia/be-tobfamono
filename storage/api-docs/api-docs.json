@@ -942,6 +942,54 @@
                     }
                 ]
             }
+        },
+        "/api/users/{id}/password": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update User password",
+                "description": "Update User password",
+                "operationId": "5f3b2040f0582e44eb196b32fbc0622d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "body",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "properties": {
+                                "password": {
+                                    "type": "string",
+                                    "example": "123456"
+                                },
+                                "password2": {
+                                    "type": "string",
+                                    "example": "123456"
+                                }
+                            },
+                            "type": "object"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful operation"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
         }
     },
     "components": {

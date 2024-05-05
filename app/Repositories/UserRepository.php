@@ -42,6 +42,21 @@ class UserRepository
     /**
      *
      * @param int $id
+     * @param array $request
+     * @return array
+     */
+    public function updatePassword(int $id, array $request): array
+    {
+        $user = User::find($id);
+        $user->password = bcrypt($request['password']);
+        $user->save();
+
+        return $this->find($user->id);
+    }
+
+    /**
+     *
+     * @param int $id
      * @return array
      */
     public function find(int $id): array
