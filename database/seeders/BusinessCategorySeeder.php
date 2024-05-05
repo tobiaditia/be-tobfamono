@@ -23,7 +23,7 @@ class BusinessCategorySeeder extends Seeder
                 'en-US' => 'Catfish'
             ],
             [
-                'id' => 1,
+                'id' => 2,
                 'id-ID' => 'Ikan Gurame',
                 'en-US' => 'Gurame'
             ],
