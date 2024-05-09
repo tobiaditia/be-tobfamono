@@ -16,9 +16,10 @@ class CreateUserAPIRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'string', 'max:100'],
             'email' => $this->getEmailRules(),
-            'password' => ['required', 'string', 'min:6']
+            'password' => ['required', 'string', 'min:6'],
+            'password2' => ['required', 'string', 'min:6', 'same:password'],
         ];
     }
 }
