@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BusinessTransaction\CreateBusinessTransactionAPIRequest;
 use App\Http\Requests\BusinessTransaction\CreateTransactionAPIRequest;
 use App\Http\Requests\BusinessTransaction\DeleteBusinessTransactionAPIRequest;
+use App\Http\Requests\BusinessTransaction\FindBusinessTransactionAPIRequest;
 use App\Http\Requests\BusinessTransaction\UpdateBusinessTransactionAPIRequest;
 use App\Http\Requests\BusinessTransaction\UpdateTransactionAPIRequest;
 use App\Repositories\BusinessTransactionRepository;
@@ -30,6 +31,33 @@ class BusinessTransactionAPIController extends Controller
     public function get(BusinessTransactionRepository $repo)
     {
         $businessTransactions = $repo->get();
+        return $this->sendResponse($businessTransactions, __('messages.retrivied'));
+    }
+
+    /**
+     * @OA\Get(
+     *      path="/api/businessTransactions/{id}",
+     *      summary="Get transaction data",
+     *      tags={"Business Transactions"},
+     *      description="Get transaction",
+     *      security={{"bearer":{}}},
+     *      @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful get transaction item",
+     *      )
+     * )
+     */
+    public function find(int $id, FindBusinessTransactionAPIRequest $request, BusinessTransactionRepository $repo)
+    {
+        $businessTransactions = $repo->find($id);
         return $this->sendResponse($businessTransactions, __('messages.retrivied'));
     }
 
@@ -162,7 +190,7 @@ class BusinessTransactionAPIController extends Controller
      * @param int $id
      *
      * @OA\Put(
-     *      path="/api/businesstTransactions/{id}",
+     *      path="/api/businessTransactions/{id}",
      *      summary="Put transaction data",
      *      tags={"Business Transactions"},
      *      description="Put Transaction",

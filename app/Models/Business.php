@@ -51,6 +51,7 @@ class Business extends Model
 {
     protected $appends = [
         'full_location',
+        'stats',
     ];
 
     /**
@@ -114,5 +115,23 @@ class Business extends Model
         $district = District::find($this->district_id);
         $village = Village::find($this->village_id);
         return $province->name .' - '. $city->name.' - '. $district->name.' - '. $village->name;
+    }
+
+    public function getStatsAttribute()
+    {
+        $jual = BusinessTransaction::where('business_id', $this->id)
+            ->where('business_transaction_type_id', BusinessTransactionType::SELL)
+            ->sum('total')
+        ;
+
+        $beli = BusinessTransaction::where('business_id', $this->id)
+            ->where('business_transaction_type_id', BusinessTransactionType::BUY)
+            ->sum('total')
+        ;
+
+        return [
+            'buy' => $beli,
+            'sell' => $jual,
+        ];
     }
 }

@@ -17,7 +17,7 @@ class BusinessTransactionRepository
      */
     public function get(): array
     {
-        return BusinessTransaction::get()->toArray();
+        return BusinessTransaction::with('businessTransactionItem')->get()->toArray();
     }
 
     /**
@@ -106,7 +106,7 @@ class BusinessTransactionRepository
      */
     public function getByBusiness(int $businessId): array
     {
-        return BusinessTransaction::where('business_id', $businessId)->get()->toArray();
+        return BusinessTransaction::with('businessTransactionItem')->where('business_id', $businessId)->get()->toArray();
     }
 
     /**
@@ -116,7 +116,7 @@ class BusinessTransactionRepository
      */
     public function find(int $id): array
     {
-        return BusinessTransaction::find($id)->toArray();
+        return BusinessTransaction::with('businessTransactionItem')->find($id)->toArray();
     }
 
     /**
@@ -133,6 +133,7 @@ class BusinessTransactionRepository
         $businessTransaction->total = $request['total'] ?? 0;
         $businessTransaction->multiplier = $request['multiplier'] ?? 1;
         $businessTransaction->date = $request['date'] ?? now()->toDateString();
+        $businessTransaction->description = $request['description'];
         $businessTransaction->save();
 
         return $this->find($businessTransaction->id);
@@ -153,6 +154,7 @@ class BusinessTransactionRepository
         $businessTransaction->total = $request['total'] ?? 0;
         $businessTransaction->multiplier = $request['multiplier'] ?? 1;
         $businessTransaction->date = $request['date'] ?? now()->toDateString();
+        $businessTransaction->description = $request['description'];
         $businessTransaction->save();
 
         return $this->find($businessTransaction->id);

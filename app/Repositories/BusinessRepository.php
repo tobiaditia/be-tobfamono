@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Business;
+use App\Models\BusinessTransaction;
+use App\Models\BusinessTransactionType;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
@@ -85,6 +87,28 @@ class BusinessRepository
     public function delete(int $id): bool
     {
         return Business::where('id', $id)->delete();
+    }
+
+    /**
+     * @param int $id
+     * @return array
+     */
+    public function stats(int $id) : array 
+    {
+        $jual = BusinessTransaction::where('business_id', $id)
+            ->where('business_transaction_type_id', BusinessTransactionType::SELL)
+            ->sum('total')
+        ;
+
+        $beli = BusinessTransaction::where('business_id', $id)
+            ->where('business_transaction_type_id', BusinessTransactionType::BUY)
+            ->sum('total')
+        ;
+
+        return [
+            'buy' => $beli,
+            'sell' => $jual,
+        ];
     }
 
 }

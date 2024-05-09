@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @OA\Schema(
@@ -37,6 +38,11 @@ use Illuminate\Database\Eloquent\Model;
  *     type="string",
  *     example="2023-12-12"
  *   ),
+ *   @OA\Property(
+ *     property="description",
+ *     type="string",
+ *     example="abc"
+ *   ),
  * )
  */
 class BusinessTransaction extends Model
@@ -52,5 +58,14 @@ class BusinessTransaction extends Model
     public function business()
     {
         return $this->belongsTo(Business::class);
+    }
+
+    /**
+     *
+     * @return BelongsTo
+     */
+    public function businessTransactionItem(): BelongsTo
+    {
+        return $this->belongsTo(BusinessTransactionItem::class);
     }
 }

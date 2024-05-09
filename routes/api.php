@@ -61,6 +61,7 @@ Route::group([
         Route::get('', [BusinessAPIController::class, 'get']);
         Route::get('/user/{id}', [BusinessAPIController::class, 'getByUser']);
         Route::get('/{id}', [BusinessAPIController::class, 'find']);
+        Route::get('/{id}/stats', [BusinessAPIController::class, 'stats']);
         Route::post('', [BusinessAPIController::class, 'create']);
         Route::put('/{id}', [BusinessAPIController::class, 'update']);
         Route::delete('/{id}', [BusinessAPIController::class, 'delete']);

@@ -192,4 +192,31 @@ class BusinessAPIController extends Controller
         $business = $businessRepository->delete($id);
         return $this->sendResponse($business, __('messages.retrivied'));
     }
+
+    /**
+     * @OA\Get(
+     *      path="/api/businesses/{id}/stats",
+     *      summary="stats business data",
+     *      tags={"Businesses"},
+     *      description="stats Business",
+     *      security={{"bearer":{}}},
+     *       @OA\Parameter(
+     *          name="id",
+     *          in="path",
+     *          required=true,
+     *          @OA\Schema(
+     *              type="integer",
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="successful get business",
+     *      )
+     * )
+     */
+    public function stats(FindBusinessAPIRequest $request, int $id, BusinessRepository $businessRepository)
+    {
+        $business = $businessRepository->stats($id);
+        return $this->sendResponse($business, __('messages.retrivied'));
+    }
 }

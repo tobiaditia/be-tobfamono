@@ -293,6 +293,36 @@
                 ]
             }
         },
+        "/api/businesses/{id}/stats": {
+            "get": {
+                "tags": [
+                    "Businesses"
+                ],
+                "summary": "stats business data",
+                "description": "stats Business",
+                "operationId": "e0a11923acfb3b00140a1f4a0d3d81cd",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get business"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
         "/api/businessCategories": {
             "get": {
                 "tags": [
@@ -357,6 +387,107 @@
                     },
                     "404": {
                         "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/businessTransactions/{id}": {
+            "get": {
+                "tags": [
+                    "Business Transactions"
+                ],
+                "summary": "Get transaction data",
+                "description": "Get transaction",
+                "operationId": "07bb03571eda9e81ae42688a4fa024f1",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful get transaction item"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Business Transactions"
+                ],
+                "summary": "Put transaction data",
+                "description": "Put Transaction",
+                "operationId": "ee2aa8eb9e9eccac77988d767827acea",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/BusinessTransaction"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "successful Put transaction"
+                    },
+                    "400": {
+                        "description": "Invalid input"
+                    },
+                    "404": {
+                        "description": "Not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Business Transactions"
+                ],
+                "summary": "Delete transaction data",
+                "description": "Delete Transaction",
+                "operationId": "e39ef806b544cc3bbd4d683647a6c046",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "successful delete transaction"
                     }
                 },
                 "security": [
@@ -451,81 +582,6 @@
                 "responses": {
                     "200": {
                         "description": "successful get transaction item"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/api/businesstTransactions/{id}": {
-            "put": {
-                "tags": [
-                    "Business Transactions"
-                ],
-                "summary": "Put transaction data",
-                "description": "Put Transaction",
-                "operationId": "452c0103963cfc54249c2480fa95e6be",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "requestBody": {
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "$ref": "#/components/schemas/BusinessTransaction"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "successful Put transaction"
-                    },
-                    "400": {
-                        "description": "Invalid input"
-                    },
-                    "404": {
-                        "description": "Not found"
-                    }
-                },
-                "security": [
-                    {
-                        "bearer": []
-                    }
-                ]
-            }
-        },
-        "/api/businessTransactions/{id}": {
-            "delete": {
-                "tags": [
-                    "Business Transactions"
-                ],
-                "summary": "Delete transaction data",
-                "description": "Delete Transaction",
-                "operationId": "e39ef806b544cc3bbd4d683647a6c046",
-                "parameters": [
-                    {
-                        "name": "id",
-                        "in": "path",
-                        "required": true,
-                        "schema": {
-                            "type": "integer"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "successful delete transaction"
                     }
                 },
                 "security": [
@@ -1086,6 +1142,10 @@
                     "date": {
                         "type": "string",
                         "example": "2023-12-12"
+                    },
+                    "description": {
+                        "type": "string",
+                        "example": "abc"
                     }
                 },
                 "type": "object"
