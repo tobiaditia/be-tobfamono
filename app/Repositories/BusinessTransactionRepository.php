@@ -133,7 +133,7 @@ class BusinessTransactionRepository
         $businessTransaction->total = $request['total'] ?? 0;
         $businessTransaction->multiplier = $request['multiplier'] ?? 1;
         $businessTransaction->date = $request['date'] ?? now()->toDateString();
-        $businessTransaction->description = $request['description'];
+        $businessTransaction->description = $request['description'] ?? '';
         $businessTransaction->save();
 
         return $this->find($businessTransaction->id);
