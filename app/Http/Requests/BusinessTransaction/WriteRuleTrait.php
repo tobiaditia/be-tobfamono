@@ -48,6 +48,7 @@ trait WriteRuleTrait
             'required',
             'integer',
             'min:0',
+            'max:4294967295'
         ];
     }
 
@@ -57,6 +58,7 @@ trait WriteRuleTrait
             'required',
             'integer',
             'min:0',
+            'max:4294967295'
         ];
     }
 
