@@ -26,14 +26,13 @@ class BusinessTransactionRepository
      */
     public function stats(array $input): array
     {
-
         $dateStarted = $input['date_started'] ?? Carbon::now()->firstOfYear()->format('Y-m-d');
         $dateEnded = $input['date_ended'] ?? Carbon::now()->endOfYear()->format('Y-m-d');
         $provinceId = $input['province_id'] ?? 0;
         $cityId = $input['city_id'] ?? 0;
         $districtId = $input['district_id'] ?? 0;
         $villageId = $input['village_id'] ?? 0;
-        $businessCategories = BusinessCategory::where('id',2)->get(); //ambil yang gurame dulu saja
+        $businessCategories = BusinessCategory::where('id', BusinessCategory::GURAME)->get(); 
 
         $a = [];
         foreach ($businessCategories as $businessCategory) {

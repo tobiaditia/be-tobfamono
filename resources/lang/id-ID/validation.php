@@ -117,5 +117,5 @@ return [
     'url' => 'Format :attribute bukan url yang valid.',
     'uuid' => ':attribute harus UUID yang valid.',
     'file_exists' => 'File yang ditentukan oleh :attribute tidak ada.',
-
+    'wrong_credential' => 'Email atau password salah.'
 ];

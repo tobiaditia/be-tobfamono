@@ -28,7 +28,7 @@ class AuthenticationRepository
             // failure to authenticate
             return response()->json([
                 'success' => false,
-                'message' => 'Failed to authenticate.',
+                'message' => __('validation.wrong_credential'),
             ], 401);
         }
     }

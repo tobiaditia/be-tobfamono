@@ -11,6 +11,9 @@ class BusinessCategory extends Model
 
     protected $table = 'business_categories';
 
+    public const LELE = 1;
+    public const GURAME = 2;
+
     /**
      * Definisi kolom yang akan ditranslate
      *
