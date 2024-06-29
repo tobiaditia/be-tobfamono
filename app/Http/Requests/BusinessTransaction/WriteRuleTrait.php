@@ -47,7 +47,7 @@ trait WriteRuleTrait
         return [
             'required',
             'integer',
-            'min:0',
+            'min:1',
             'max:4294967295'
         ];
     }
@@ -57,7 +57,7 @@ trait WriteRuleTrait
         return [
             'required',
             'integer',
-            'min:0',
+            'min:1',
             'max:4294967295'
         ];
     }

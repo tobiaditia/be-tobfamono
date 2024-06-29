@@ -25,4 +25,5 @@ class CreateBusinessTransactionAPIRequest extends FormRequest
             'date' => $this->getDateRules(),
         ];
     }
+
 }

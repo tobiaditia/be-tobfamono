@@ -47,7 +47,7 @@ trait WriteRuleTrait
         return [
             'required',
             'integer',
-            'min:0',
+            'min:1',
         ];
     }
 

@@ -117,5 +117,19 @@ return [
     'url' => 'Format :attribute bukan url yang valid.',
     'uuid' => ':attribute harus UUID yang valid.',
     'file_exists' => 'File yang ditentukan oleh :attribute tidak ada.',
-    'wrong_credential' => 'Email atau password salah.'
+    'wrong_credential' => 'Email atau password salah.',
+    'custom' => [
+        'total' => [
+            'required' => 'Harga diperlukan.',
+            'integer' => 'Harga harus berupa angka.',
+            'min' => 'Harga minimal :min.',
+            'max' => 'Harga maksimal :max.',
+        ],
+        'multiplier' => [
+            'required' => 'Jumlah diperlukan.',
+            'integer' => 'Jumlah harus berupa angka.',
+            'min' => 'Jumlah minimal :min.',
+            'max' => 'Jumlah maksimal :max.',
+        ],
+    ],
 ];
