@@ -131,5 +131,11 @@ return [
             'min' => 'Jumlah minimal :min.',
             'max' => 'Jumlah maksimal :max.',
         ],
+        'price' => [
+            'required' => 'Harga diperlukan.',
+            'integer' => 'Harga harus berupa angka.',
+            'min' => 'Harga minimal :min.',
+            'max' => 'Harga maksimal :max.',
+        ],
     ],
 ];

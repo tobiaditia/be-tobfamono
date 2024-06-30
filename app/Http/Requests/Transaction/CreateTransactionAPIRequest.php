@@ -18,9 +18,9 @@ class CreateTransactionAPIRequest extends FormRequest
     {
         return [
             'user_id' => $this->getUserIdRules(),
+            'description' => $this->getAddressRules(),
             'address' => $this->getAddressRules(),
             'date' => $this->getDateRules(),
-            'description' => $this->getAddressRules(),
             'transaction_type_id' => $this->getTransactionTypeIdRules(),
             'business_category_id' => $this->getBusinessCategoryIdRules(),
             'price' => $this->getPriceRules(),
