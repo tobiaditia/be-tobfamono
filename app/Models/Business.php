@@ -130,8 +130,8 @@ class Business extends Model
         ;
 
         return [
-            'buy' => $beli,
-            'sell' => $jual,
+            'buy' => (float)$beli,
+            'sell' => (float)$jual,
         ];
     }
 }
