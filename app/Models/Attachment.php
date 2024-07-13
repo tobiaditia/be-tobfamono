@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Attachment extends Model
 {
@@ -15,6 +16,6 @@ class Attachment extends Model
 
     public function getNameAttribute()
     {
-        return url($this->attributes['name']);
+        return Storage::disk('public')->url(($this->attributes['name']));
     }
 }
