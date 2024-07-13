@@ -6,6 +6,7 @@ use App\Models\Business;
 use App\Models\BusinessTransaction;
 use App\Models\BusinessTransactionItem;
 use App\Models\BusinessTransactionType;
+use App\Rules\Base64Rules;
 
 trait WriteRuleTrait
 {
@@ -72,14 +73,9 @@ trait WriteRuleTrait
 
     public function getAttachmentRules(): array
     {
-        // if (base64_decode($value, true) === false) {
-        //     return false;
-        //     }
         return [
             'nullable',
-            // 'file', 
-            // 'mimes:jpg,jpeg,png', 
-            // 'max:10240'
+            new Base64Rules
         ];
     }
 }
