@@ -822,9 +822,39 @@
                 "operationId": "d704a565af6760412bb4a3aefa71af9f",
                 "requestBody": {
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/Transaction"
+                                "properties": {
+                                    "user_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "address": {
+                                        "type": "string",
+                                        "example": "Banjarejo"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "example": "2023-12-12"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "tests"
+                                    },
+                                    "transaction_type_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "business_category_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "price": {
+                                        "type": "integer",
+                                        "example": "1000"
+                                    }
+                                },
+                                "type": "object"
                             }
                         }
                     }

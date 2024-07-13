@@ -91,7 +91,17 @@ class TransactionRepository
      */
     public function delete(int $id): bool
     {
-        return Transaction::where('id', $id)->delete();
+        $transaction = Transaction::find($id);
+
+        foreach ($transaction->attachments as $attachment) {
+            Attachment::where('id', $attachment->id)->delete();
+            Storage::disk('public')->delete($attachment->name);
+        }
+
+        Transaction::where('id', $id)->delete();
+
+
+        return true;
     }
 
 }
