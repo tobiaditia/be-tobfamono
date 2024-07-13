@@ -2,12 +2,14 @@
 
 namespace App\Repositories;
 
+use App\Models\Attachment;
 use App\Models\Business;
 use App\Models\BusinessCategory;
 use App\Models\BusinessTransaction;
 use App\Models\BusinessTransactionItem;
 use App\Models\BusinessTransactionType;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Storage;
 
 class BusinessTransactionRepository
 {
@@ -17,7 +19,7 @@ class BusinessTransactionRepository
      */
     public function get(): array
     {
-        return BusinessTransaction::with('businessTransactionItem')->get()->toArray();
+        return BusinessTransaction::with('businessTransactionItem', 'attachments')->get()->toArray();
     }
 
     /**
@@ -134,6 +136,27 @@ class BusinessTransactionRepository
         $businessTransaction->date = $request['date'] ?? now()->toDateString();
         $businessTransaction->description = $request['description'] ?? '';
         $businessTransaction->save();
+
+        if (isset($request['attachment'])) {
+
+            $base64Attachment = $request['attachment'];
+            $decodedAttachment = base64_decode($base64Attachment);
+
+            // Generate a unique file name
+            $fileName = uniqid() . '.jpg'; // or any other extension based on the attachment type
+
+            // Store the decoded file in the desired location
+            $filePath = 'business_transactions/' . $fileName;
+            Storage::disk('public')->put($filePath, $decodedAttachment);
+
+            // Create the attachment entry in the database
+            $attachment = new Attachment();
+            $attachment->type_id = Attachment::TYPE_BUSINESS_TRANSACTION;
+            $attachment->source_id = $businessTransaction->id;
+            $attachment->name = $filePath;
+            $attachment->save();
+
+        }
 
         return $this->find($businessTransaction->id);
     }

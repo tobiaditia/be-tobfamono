@@ -70,7 +70,46 @@ class TransactionAPIController extends Controller
      *      security={{"bearer":{}}},
      *
      *      @OA\RequestBody(
-     *          @OA\JsonContent(ref="#/components/schemas/Transaction")
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                    @OA\Property(
+     *                      property="user_id",
+     *                      type="int",
+     *                      example="1"
+     *                    ),
+     *                    @OA\Property(
+     *                      property="address",
+     *                      type="string",
+     *                      example="Banjarejo"
+     *                    ),
+     *                    @OA\Property(
+     *                      property="date",
+     *                      type="string",
+     *                      example="2023-12-12"
+     *                    ),
+     *                    @OA\Property(
+     *                      property="description",
+     *                      type="string",
+     *                      example="tests"
+     *                    ),
+     *                    @OA\Property(
+     *                      property="transaction_type_id",
+     *                      type="int",
+     *                      example="1"
+     *                    ),
+     *                    @OA\Property(
+     *                      property="business_category_id",
+     *                      type="int",
+     *                      example="1"
+     *                    ),
+     *                    @OA\Property(
+     *                      property="price",
+     *                      type="int",
+     *                      example="1000"
+     *                    )
+     *               )
+     *          )
      *      ),
      *
      *      @OA\Response(

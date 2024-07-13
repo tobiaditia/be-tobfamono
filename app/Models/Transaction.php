@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @OA\Schema(
@@ -73,5 +74,12 @@ class Transaction extends Model
         return $this->belongsTo(BusinessCategory::class);
     }
 
-
+    /**
+     *
+     * @return HasMany
+     */
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(Attachment::class, 'source_id')->where('type_id', Attachment::TYPE_TRANSACTION);
+    }
 }

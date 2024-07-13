@@ -371,9 +371,43 @@
                 "operationId": "13fb33812e3471000f084d69bd58ae46",
                 "requestBody": {
                     "content": {
-                        "application/json": {
+                        "multipart/form-data": {
                             "schema": {
-                                "$ref": "#/components/schemas/BusinessTransaction"
+                                "properties": {
+                                    "business_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "business_transaction_type_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "business_transaction_item_id": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "total": {
+                                        "type": "integer",
+                                        "example": "1000"
+                                    },
+                                    "multiplier": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "example": "2023-12-12"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "abc"
+                                    },
+                                    "attachment": {
+                                        "description": "Attachment",
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
                             }
                         }
                     }
@@ -1146,6 +1180,10 @@
                     "description": {
                         "type": "string",
                         "example": "abc"
+                    },
+                    "attachment": {
+                        "description": "Attachment",
+                        "type": "file"
                     }
                 },
                 "type": "object"

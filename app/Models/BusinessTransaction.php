@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 /**
  * @OA\Schema(
@@ -43,6 +45,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  *     type="string",
  *     example="abc"
  *   ),
+ *   @OA\Property(
+ *     description="Attachment",
+ *     property="attachment",
+ *     type="file"
+ *   )
  * )
  */
 class BusinessTransaction extends Model
@@ -67,5 +74,14 @@ class BusinessTransaction extends Model
     public function businessTransactionItem(): BelongsTo
     {
         return $this->belongsTo(BusinessTransactionItem::class);
+    }
+
+    /**
+     *
+     * @return HasMany
+     */
+    public function attachments(): HasMany
+    {
+        return $this->hasMany(Attachment::class, 'source_id')->where('type_id', Attachment::TYPE_BUSINESS_TRANSACTION);
     }
 }

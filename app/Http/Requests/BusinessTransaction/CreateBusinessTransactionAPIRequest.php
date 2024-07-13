@@ -23,6 +23,7 @@ class CreateBusinessTransactionAPIRequest extends FormRequest
             'total' => $this->getTotalRules(),
             'multiplier' => $this->getMultiplierRules(),
             'date' => $this->getDateRules(),
+            'attachment' => $this->getAttachmentRules()
         ];
     }
 

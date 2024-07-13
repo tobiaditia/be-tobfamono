@@ -69,4 +69,17 @@ trait WriteRuleTrait
             'date',
         ];
     }
+
+    public function getAttachmentRules(): array
+    {
+        // if (base64_decode($value, true) === false) {
+        //     return false;
+        //     }
+        return [
+            'nullable',
+            // 'file', 
+            // 'mimes:jpg,jpeg,png', 
+            // 'max:10240'
+        ];
+    }
 }

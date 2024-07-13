@@ -161,7 +161,51 @@ class BusinessTransactionAPIController extends Controller
      *      security={{"bearer":{}}},
      *
      *      @OA\RequestBody(
-     *          @OA\JsonContent(ref="#/components/schemas/BusinessTransaction")
+     *          @OA\MediaType(
+     *              mediaType="multipart/form-data",
+     *              @OA\Schema(
+     *                @OA\Property(
+     *                  property="business_id",
+     *                  type="int",
+     *                  example="1"
+     *                ),
+     *                @OA\Property(
+     *                  property="business_transaction_type_id",
+     *                  type="int",
+     *                  example="1"
+     *                ),
+     *                @OA\Property(
+     *                  property="business_transaction_item_id",
+     *                  type="int",
+     *                  example="1"
+     *                ),
+     *                @OA\Property(
+     *                  property="total",
+     *                  type="int",
+     *                  example="1000"
+     *                ),
+     *                @OA\Property(
+     *                  property="multiplier",
+     *                  type="int",
+     *                  example="1"
+     *                ),
+     *                @OA\Property(
+     *                  property="date",
+     *                  type="string",
+     *                  example="2023-12-12"
+     *                ),
+     *                @OA\Property(
+     *                  property="description",
+     *                  type="string",
+     *                  example="abc"
+     *                ),
+     *                @OA\Property(
+     *                  description="Attachment",
+     *                  property="attachment",
+     *                  type="file"
+     *                )
+     *              )
+     *          )
      *      ),
      *
      *      @OA\Response(
