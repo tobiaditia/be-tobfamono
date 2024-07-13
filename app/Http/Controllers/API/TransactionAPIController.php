@@ -107,6 +107,11 @@ class TransactionAPIController extends Controller
      *                      property="price",
      *                      type="int",
      *                      example="1000"
+     *                    ),
+     *                    @OA\Property(
+     *                      description="Attachment",
+     *                      property="attachment",
+     *                      type="file"
      *                    )
      *               )
      *          )
